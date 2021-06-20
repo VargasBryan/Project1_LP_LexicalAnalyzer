@@ -37,28 +37,25 @@ reserved = {   #Carlos Moncayo
     'Set':'SET',
     'Map':'MAP'
 }
-# List of token names.   This is always required
+# List of token names.   #Bryan Vargas
 tokens = (
-    'NUMBER',
-    'PLUS',
-    'MINUS',
-    'TIMES',
-    'DIVIDE',
-    'LPAREN',
-    'RPAREN',
-    'NAME'
-)+tuple(reserved.values())
-
-# Regular expression rules for simple tokens
-t_PLUS = r'\+'
-t_MINUS = r'-'
-t_TIMES = r'\*'
-t_DIVIDE = r'/'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
+    'POINT',
+    'COLON',
+    'COMMA',
+    'SEMICOLON',
+    'OPEN_PARENTHESIS',
+    'CLOSE_PARENTHESIS',
+    'OPEN_BRACKET',
+    'CLOSE_BRACKET',
+    'OPEN_BRACE',
+    'CLOSE_BRACE',
+    'LINE_BREAK',
+    'SINGLE_QUOTE',
+    'DOUBLE_QUOTES',
+    'BACKSLASH',
+) + tuple(reserved.values())
 
 # A regular expression rule with some action code
-
 
 def t_NUMBER(t):
     r'\d+'
