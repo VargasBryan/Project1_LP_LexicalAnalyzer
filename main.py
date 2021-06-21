@@ -55,6 +55,23 @@ tokens = (
     'BACKSLASH',
 ) + tuple(reserved.values())
 
+# Regular expression rules for simple tokens
+
+t_POINT = r'\.'
+t_COLON = r':'
+t_COMMA = r','
+t_SEMICOLON = r';'
+t_OPEN_PARENTHESIS = r'\('
+t_CLOSE_PARENTHESIS = r'\)'
+t_OPEN_BRACKET = r'\['
+t_CLOSE_BRACKET = r'\]'
+t_OPEN_BRACE = r'\{'
+t_CLOSE_BRACE = r'\}'
+t_LINE_BREAK = r'\n'
+t_SINGLE_QUOTE = r'\''
+t_DOUBLE_QUOTES = r'\"'
+t_BACKSLASH = r'\\'
+
 # A regular expression rule with some action code
 
 def t_NUMBER(t):
