@@ -3,8 +3,6 @@ import ply.lex as lex
 reserved = {  # Carlos Moncayo
     'if': 'IF',
     'then': 'THEN',
-    'else': 'ELSE',
-    'while': 'WHILE',
     'boolean': 'BOOLEAN',
     'break': 'BREAK',
     'case': 'CASE',
@@ -16,7 +14,6 @@ reserved = {  # Carlos Moncayo
     'for': 'FOR',
     'function': 'FUNCTION',
     'let': 'LET',
-    'if': 'IF',
     'true': 'TRUE',
     'new': 'NEW',
     'static': 'STATIC',
