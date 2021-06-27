@@ -208,7 +208,7 @@ def t_NOT(t):
     r'\!'
     return t
 
-
+"""
 precedencia = (
     ('IZQUIERDA', 'SUMA', 'RESTA'),
     ('IZQUIERDA', 'MULTIPLICACION', 'DIVISION'),
@@ -243,7 +243,7 @@ def p_NEGACION(p):
 
 def p_NUMBER(p):
     p[0] = p[1]
-
+"""
 # Maria Rivera
 
 # A regular expression rule with some action code

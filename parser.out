@@ -1,0 +1,444 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    ARRAY
+    BACKSLASH
+    BOOLEAN
+    BREAK
+    CASE
+    CHAR
+    CLASS
+    CLOSE_BRACE
+    CLOSE_BRACKET
+    COLON
+    COMMA
+    COMMENTS
+    CONST
+    DEFAULT
+    DIFERENTE
+    DIVIGUAL
+    DOUBLE_QUOTES
+    ELSE
+    FALSE
+    FLOAT
+    FOR
+    FUNCTION
+    IF
+    IGUAL
+    IGUALIGUAL
+    INT
+    LENGTH
+    LET
+    LINE_BREAK
+    LONGCOMMENT
+    MAP
+    MASIGUAL
+    MAYORIGUALQUE
+    MAYORQUE
+    MENORIGUALQUE
+    MENORQUE
+    MENOSIGUAL
+    MODIGUAL
+    NAME
+    NEW
+    NOT
+    NULL
+    OPEN_BRACE
+    OPEN_BRACKET
+    OR
+    POINT
+    PORIGUAL
+    POTIGUAK
+    RETURN
+    SEMICOLON
+    SET
+    SINGLE_QUOTE
+    STATIC
+    STRING
+    SWITCH
+    THEN
+    TOSTRING
+    TRUE
+    TYPEOF
+    UNDEFINED
+    VAR
+    WHILE
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> expression SUMA expression
+Rule 2     expression -> expression RESTA expression
+Rule 3     expression -> RESTA expression
+Rule 4     expression -> term
+Rule 5     term -> term MULTIPLICACION factor
+Rule 6     term -> term DIVISION factor
+Rule 7     term -> factor
+Rule 8     factor -> NUMBER
+Rule 9     factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+Terminals, with rules where they appear
+
+AND                  : 
+ARRAY                : 
+BACKSLASH            : 
+BOOLEAN              : 
+BREAK                : 
+CASE                 : 
+CHAR                 : 
+CLASS                : 
+CLOSE_BRACE          : 
+CLOSE_BRACKET        : 
+CLOSE_PARENTHESIS    : 9
+COLON                : 
+COMMA                : 
+COMMENTS             : 
+CONST                : 
+DEFAULT              : 
+DIFERENTE            : 
+DIVIGUAL             : 
+DIVISION             : 6
+DOUBLE_QUOTES        : 
+ELSE                 : 
+FALSE                : 
+FLOAT                : 
+FOR                  : 
+FUNCTION             : 
+IF                   : 
+IGUAL                : 
+IGUALIGUAL           : 
+INT                  : 
+LENGTH               : 
+LET                  : 
+LINE_BREAK           : 
+LONGCOMMENT          : 
+MAP                  : 
+MASIGUAL             : 
+MAYORIGUALQUE        : 
+MAYORQUE             : 
+MENORIGUALQUE        : 
+MENORQUE             : 
+MENOSIGUAL           : 
+MODIGUAL             : 
+MULTIPLICACION       : 5
+NAME                 : 
+NEW                  : 
+NOT                  : 
+NULL                 : 
+NUMBER               : 8
+OPEN_BRACE           : 
+OPEN_BRACKET         : 
+OPEN_PARENTHESIS     : 9
+OR                   : 
+POINT                : 
+PORIGUAL             : 
+POTIGUAK             : 
+RESTA                : 2 3
+RETURN               : 
+SEMICOLON            : 
+SET                  : 
+SINGLE_QUOTE         : 
+STATIC               : 
+STRING               : 
+SUMA                 : 1
+SWITCH               : 
+THEN                 : 
+TOSTRING             : 
+TRUE                 : 
+TYPEOF               : 
+UNDEFINED            : 
+VAR                  : 
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 1 2 2 3 9 0
+factor               : 5 6 7
+term                 : 4 5 6
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . expression SUMA expression
+    (2) expression -> . expression RESTA expression
+    (3) expression -> . RESTA expression
+    (4) expression -> . term
+    (5) term -> . term MULTIPLICACION factor
+    (6) term -> . term DIVISION factor
+    (7) term -> . factor
+    (8) factor -> . NUMBER
+    (9) factor -> . OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+    RESTA           shift and go to state 2
+    NUMBER          shift and go to state 5
+    OPEN_PARENTHESIS shift and go to state 6
+
+    expression                     shift and go to state 1
+    term                           shift and go to state 3
+    factor                         shift and go to state 4
+
+state 1
+
+    (0) S' -> expression .
+    (1) expression -> expression . SUMA expression
+    (2) expression -> expression . RESTA expression
+
+    SUMA            shift and go to state 7
+    RESTA           shift and go to state 8
+
+
+state 2
+
+    (3) expression -> RESTA . expression
+    (1) expression -> . expression SUMA expression
+    (2) expression -> . expression RESTA expression
+    (3) expression -> . RESTA expression
+    (4) expression -> . term
+    (5) term -> . term MULTIPLICACION factor
+    (6) term -> . term DIVISION factor
+    (7) term -> . factor
+    (8) factor -> . NUMBER
+    (9) factor -> . OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+    RESTA           shift and go to state 2
+    NUMBER          shift and go to state 5
+    OPEN_PARENTHESIS shift and go to state 6
+
+    expression                     shift and go to state 9
+    term                           shift and go to state 3
+    factor                         shift and go to state 4
+
+state 3
+
+    (4) expression -> term .
+    (5) term -> term . MULTIPLICACION factor
+    (6) term -> term . DIVISION factor
+
+    SUMA            reduce using rule 4 (expression -> term .)
+    RESTA           reduce using rule 4 (expression -> term .)
+    $end            reduce using rule 4 (expression -> term .)
+    CLOSE_PARENTHESIS reduce using rule 4 (expression -> term .)
+    MULTIPLICACION  shift and go to state 10
+    DIVISION        shift and go to state 11
+
+
+state 4
+
+    (7) term -> factor .
+
+    MULTIPLICACION  reduce using rule 7 (term -> factor .)
+    DIVISION        reduce using rule 7 (term -> factor .)
+    SUMA            reduce using rule 7 (term -> factor .)
+    RESTA           reduce using rule 7 (term -> factor .)
+    $end            reduce using rule 7 (term -> factor .)
+    CLOSE_PARENTHESIS reduce using rule 7 (term -> factor .)
+
+
+state 5
+
+    (8) factor -> NUMBER .
+
+    MULTIPLICACION  reduce using rule 8 (factor -> NUMBER .)
+    DIVISION        reduce using rule 8 (factor -> NUMBER .)
+    SUMA            reduce using rule 8 (factor -> NUMBER .)
+    RESTA           reduce using rule 8 (factor -> NUMBER .)
+    $end            reduce using rule 8 (factor -> NUMBER .)
+    CLOSE_PARENTHESIS reduce using rule 8 (factor -> NUMBER .)
+
+
+state 6
+
+    (9) factor -> OPEN_PARENTHESIS . expression CLOSE_PARENTHESIS
+    (1) expression -> . expression SUMA expression
+    (2) expression -> . expression RESTA expression
+    (3) expression -> . RESTA expression
+    (4) expression -> . term
+    (5) term -> . term MULTIPLICACION factor
+    (6) term -> . term DIVISION factor
+    (7) term -> . factor
+    (8) factor -> . NUMBER
+    (9) factor -> . OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+    RESTA           shift and go to state 2
+    NUMBER          shift and go to state 5
+    OPEN_PARENTHESIS shift and go to state 6
+
+    expression                     shift and go to state 12
+    term                           shift and go to state 3
+    factor                         shift and go to state 4
+
+state 7
+
+    (1) expression -> expression SUMA . expression
+    (1) expression -> . expression SUMA expression
+    (2) expression -> . expression RESTA expression
+    (3) expression -> . RESTA expression
+    (4) expression -> . term
+    (5) term -> . term MULTIPLICACION factor
+    (6) term -> . term DIVISION factor
+    (7) term -> . factor
+    (8) factor -> . NUMBER
+    (9) factor -> . OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+    RESTA           shift and go to state 2
+    NUMBER          shift and go to state 5
+    OPEN_PARENTHESIS shift and go to state 6
+
+    expression                     shift and go to state 13
+    term                           shift and go to state 3
+    factor                         shift and go to state 4
+
+state 8
+
+    (2) expression -> expression RESTA . expression
+    (1) expression -> . expression SUMA expression
+    (2) expression -> . expression RESTA expression
+    (3) expression -> . RESTA expression
+    (4) expression -> . term
+    (5) term -> . term MULTIPLICACION factor
+    (6) term -> . term DIVISION factor
+    (7) term -> . factor
+    (8) factor -> . NUMBER
+    (9) factor -> . OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+    RESTA           shift and go to state 2
+    NUMBER          shift and go to state 5
+    OPEN_PARENTHESIS shift and go to state 6
+
+    expression                     shift and go to state 14
+    term                           shift and go to state 3
+    factor                         shift and go to state 4
+
+state 9
+
+    (3) expression -> RESTA expression .
+    (1) expression -> expression . SUMA expression
+    (2) expression -> expression . RESTA expression
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+    $end            reduce using rule 3 (expression -> RESTA expression .)
+    CLOSE_PARENTHESIS reduce using rule 3 (expression -> RESTA expression .)
+    SUMA            shift and go to state 7
+    RESTA           shift and go to state 8
+
+  ! SUMA            [ reduce using rule 3 (expression -> RESTA expression .) ]
+  ! RESTA           [ reduce using rule 3 (expression -> RESTA expression .) ]
+
+
+state 10
+
+    (5) term -> term MULTIPLICACION . factor
+    (8) factor -> . NUMBER
+    (9) factor -> . OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+    NUMBER          shift and go to state 5
+    OPEN_PARENTHESIS shift and go to state 6
+
+    factor                         shift and go to state 15
+
+state 11
+
+    (6) term -> term DIVISION . factor
+    (8) factor -> . NUMBER
+    (9) factor -> . OPEN_PARENTHESIS expression CLOSE_PARENTHESIS
+
+    NUMBER          shift and go to state 5
+    OPEN_PARENTHESIS shift and go to state 6
+
+    factor                         shift and go to state 16
+
+state 12
+
+    (9) factor -> OPEN_PARENTHESIS expression . CLOSE_PARENTHESIS
+    (1) expression -> expression . SUMA expression
+    (2) expression -> expression . RESTA expression
+
+    CLOSE_PARENTHESIS shift and go to state 17
+    SUMA            shift and go to state 7
+    RESTA           shift and go to state 8
+
+
+state 13
+
+    (1) expression -> expression SUMA expression .
+    (1) expression -> expression . SUMA expression
+    (2) expression -> expression . RESTA expression
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+    $end            reduce using rule 1 (expression -> expression SUMA expression .)
+    CLOSE_PARENTHESIS reduce using rule 1 (expression -> expression SUMA expression .)
+    SUMA            shift and go to state 7
+    RESTA           shift and go to state 8
+
+  ! SUMA            [ reduce using rule 1 (expression -> expression SUMA expression .) ]
+  ! RESTA           [ reduce using rule 1 (expression -> expression SUMA expression .) ]
+
+
+state 14
+
+    (2) expression -> expression RESTA expression .
+    (1) expression -> expression . SUMA expression
+    (2) expression -> expression . RESTA expression
+
+  ! shift/reduce conflict for SUMA resolved as shift
+  ! shift/reduce conflict for RESTA resolved as shift
+    $end            reduce using rule 2 (expression -> expression RESTA expression .)
+    CLOSE_PARENTHESIS reduce using rule 2 (expression -> expression RESTA expression .)
+    SUMA            shift and go to state 7
+    RESTA           shift and go to state 8
+
+  ! SUMA            [ reduce using rule 2 (expression -> expression RESTA expression .) ]
+  ! RESTA           [ reduce using rule 2 (expression -> expression RESTA expression .) ]
+
+
+state 15
+
+    (5) term -> term MULTIPLICACION factor .
+
+    MULTIPLICACION  reduce using rule 5 (term -> term MULTIPLICACION factor .)
+    DIVISION        reduce using rule 5 (term -> term MULTIPLICACION factor .)
+    SUMA            reduce using rule 5 (term -> term MULTIPLICACION factor .)
+    RESTA           reduce using rule 5 (term -> term MULTIPLICACION factor .)
+    $end            reduce using rule 5 (term -> term MULTIPLICACION factor .)
+    CLOSE_PARENTHESIS reduce using rule 5 (term -> term MULTIPLICACION factor .)
+
+
+state 16
+
+    (6) term -> term DIVISION factor .
+
+    MULTIPLICACION  reduce using rule 6 (term -> term DIVISION factor .)
+    DIVISION        reduce using rule 6 (term -> term DIVISION factor .)
+    SUMA            reduce using rule 6 (term -> term DIVISION factor .)
+    RESTA           reduce using rule 6 (term -> term DIVISION factor .)
+    $end            reduce using rule 6 (term -> term DIVISION factor .)
+    CLOSE_PARENTHESIS reduce using rule 6 (term -> term DIVISION factor .)
+
+
+state 17
+
+    (9) factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS .
+
+    MULTIPLICACION  reduce using rule 9 (factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS .)
+    DIVISION        reduce using rule 9 (factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS .)
+    SUMA            reduce using rule 9 (factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS .)
+    RESTA           reduce using rule 9 (factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS .)
+    $end            reduce using rule 9 (factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS .)
+    CLOSE_PARENTHESIS reduce using rule 9 (factor -> OPEN_PARENTHESIS expression CLOSE_PARENTHESIS .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for SUMA in state 9 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 9 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 13 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 13 resolved as shift
+WARNING: shift/reduce conflict for SUMA in state 14 resolved as shift
+WARNING: shift/reduce conflict for RESTA in state 14 resolved as shift
