@@ -11,19 +11,16 @@ reserved = {  # Carlos Moncayo
     'char': 'CHAR',
     'class': 'CLASS',
     'default': 'DEFAULT',
-    'else': 'ELSE',
     'false': 'FALSE',
     'for': 'FOR',
     'function': 'FUNCTION',
     'let': 'LET',
-    'if': 'IF',
     'true': 'TRUE',
     'new': 'NEW',
     'static': 'STATIC',
     'const': 'CONST',
     'switch': 'SWITCH',
     'typeof': 'TYPEOF',
-    'while': 'WHILE',
     'null': 'NULL',
     'var': 'VAR',
     'float': 'FLOAT',
@@ -37,40 +34,41 @@ reserved = {  # Carlos Moncayo
     'Set': 'SET',
     'Map': 'MAP'
 }
-# List of token names.   #Bryan Vargas
+# List of token names.   -    Bryan Vargas
 tokens = (
              'POINT',
              'COLON',
              'COMMA',
              'SEMICOLON',
-             'OPEN_PARENTHESIS',
-             'CLOSE_PARENTHESIS',
-             'OPEN_BRACKET',
-             'CLOSE_BRACKET',
-             'OPEN_BRACE',
-             'CLOSE_BRACE',
-             'LINE_BREAK',
-             'SINGLE_QUOTE',
-             'DOUBLE_QUOTES',
+             'OPENPARENTHESIS',
+             'CLOSEPARENTHESIS',
+             'OPENBRACKET',
+             'CLOSEBRACKET',
+             'OPENBRACE',
+             'CLOSEBRACE',
+             'LINEBREAK',
+             'SINGLEQUOTE',
+             'DOUBLEQUOTES',
              'BACKSLASH',
          ) + tuple(reserved.values())
 
-# Regular expression rules for simple tokens
+# Regular expression rules for simple tokens   -   Bryan Vargas
 
 t_POINT = r'\.'
 t_COLON = r':'
 t_COMMA = r','
 t_SEMICOLON = r';'
-t_OPEN_PARENTHESIS = r'\('
-t_CLOSE_PARENTHESIS = r'\)'
-t_OPEN_BRACKET = r'\['
-t_CLOSE_BRACKET = r'\]'
-t_OPEN_BRACE = r'\{'
-t_CLOSE_BRACE = r'\}'
-t_LINE_BREAK = r'\n'
-t_SINGLE_QUOTE = r'\''
-t_DOUBLE_QUOTES = r'\"'
+t_OPENPARENTHESIS = r'\('
+t_CLOSEPARENTHESIS = r'\)'
+t_OPENBRACKET = r'\['
+t_CLOSEBRACKET = r'\]'
+t_OPENBRACE = r'\{'
+t_CLOSEBRACE = r'\}'
+t_LINEBREAK = r'\n'
+t_SINGLEQUOTE = r'\''
+t_DOUBLEQUOTES = r'\"'
 t_BACKSLASH = r'\\'
+
 
 # Maria Rivera
 
