@@ -3,14 +3,14 @@
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
-from calclex import tokens
+from main import tokens
 
 def p_expression_plus(p):
-    'expression : expression PLUS term'
+    'expression : expression SUMA term'
     p[0] = p[1] + p[3]
 
 def p_expression_minus(p):
-    'expression : expression MINUS term'
+    'expression : expression RESTA term'
     p[0] = p[1] - p[3]
 
 def p_expression_term(p):
@@ -18,11 +18,11 @@ def p_expression_term(p):
     p[0] = p[1]
 
 def p_term_times(p):
-    'term : term TIMES factor'
+    'term : term MULTIPLICACION factor'
     p[0] = p[1] * p[3]
 
 def p_term_div(p):
-    'term : term DIVIDE factor'
+    'term : term DIVISION factor'
     p[0] = p[1] / p[3]
 
 def p_term_factor(p):
@@ -34,7 +34,7 @@ def p_factor_num(p):
     p[0] = p[1]
 
 def p_factor_expr(p):
-    'factor : LPAREN expression RPAREN'
+    'factor : OPEN_PARENTHESIS expression CLOSE_PARENTHESIS'
     p[0] = p[2]
 
 # Error rule for syntax errors
@@ -46,7 +46,7 @@ parser = yacc.yacc()
 
 while True:
     try:
-        s = raw_input('calc > ')
+        s = input('calc > ')
     except EOFError:
         break
     if not s:
