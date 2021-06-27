@@ -72,7 +72,8 @@ tokens = (
     'DIVISION',
     'AND',
     'NOT',
-    'OR'
+    'OR',
+    'LONGCOMMENT'
 ) + tuple(reserved.values())
 
 # Maria Rivera
@@ -160,7 +161,12 @@ def t_MENORIGUALQUE(t):
     return t
 
 def t_COMMENTS(t):
-    r'\//.*'
+    r'//.*'
+    pass
+
+def t_LONGCOMMENT(t):
+    r'\/\*([^*]|\*[^\/])*(\*)+\/'
+    t.lexer.lineno += t.value.count('\n')
     pass
 
 # Operadores Aritméticos
@@ -283,7 +289,14 @@ lexer = lex.lex()
 # Test it out
 data = '''
 3 + 4 * 10
-+ -20 *2 / //
++ -20 *2 / // 43
+4 hola
+/*
+ 
+ hola
+adios
+*/
+que tal
 '''
 
 # Give the lexer some input
