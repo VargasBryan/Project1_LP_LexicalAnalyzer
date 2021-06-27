@@ -11,16 +11,19 @@ reserved = {  # Carlos Moncayo
     'char': 'CHAR',
     'class': 'CLASS',
     'default': 'DEFAULT',
+    'else': 'ELSE',
     'false': 'FALSE',
     'for': 'FOR',
     'function': 'FUNCTION',
     'let': 'LET',
+    'if': 'IF',
     'true': 'TRUE',
     'new': 'NEW',
     'static': 'STATIC',
     'const': 'CONST',
     'switch': 'SWITCH',
     'typeof': 'TYPEOF',
+    'while': 'WHILE',
     'null': 'NULL',
     'var': 'VAR',
     'float': 'FLOAT',
@@ -34,129 +37,168 @@ reserved = {  # Carlos Moncayo
     'Set': 'SET',
     'Map': 'MAP'
 }
-# List of token names.   -    Bryan Vargas
+# List of token names.   #Bryan Vargas
 tokens = (
-             'POINT',
-             'COLON',
-             'COMMA',
-             'SEMICOLON',
-             'OPENPARENTHESIS',
-             'CLOSEPARENTHESIS',
-             'OPENBRACKET',
-             'CLOSEBRACKET',
-             'OPENBRACE',
-             'CLOSEBRACE',
-             'LINEBREAK',
-             'SINGLEQUOTE',
-             'DOUBLEQUOTES',
-             'BACKSLASH',
-         ) + tuple(reserved.values())
-
-# Regular expression rules for simple tokens   -   Bryan Vargas
-
-t_POINT = r'\.'
-t_COLON = r':'
-t_COMMA = r','
-t_SEMICOLON = r';'
-t_OPENPARENTHESIS = r'\('
-t_CLOSEPARENTHESIS = r'\)'
-t_OPENBRACKET = r'\['
-t_CLOSEBRACKET = r'\]'
-t_OPENBRACE = r'\{'
-t_CLOSEBRACE = r'\}'
-t_LINEBREAK = r'\n'
-t_SINGLEQUOTE = r'\''
-t_DOUBLEQUOTES = r'\"'
-t_BACKSLASH = r'\\'
-
+    'NUMBER',
+    'POINT',
+    'COLON',
+    'COMMA',
+    'SEMICOLON',
+    'OPEN_PARENTHESIS',
+    'CLOSE_PARENTHESIS',
+    'OPEN_BRACKET',
+    'CLOSE_BRACKET',
+    'OPEN_BRACE',
+    'CLOSE_BRACE',
+    'LINE_BREAK',
+    'SINGLE_QUOTE',
+    'DOUBLE_QUOTES',
+    'BACKSLASH',
+    'IGUAL',
+    'MASIGUAL',
+    'MENOSIGUAL',
+    'PORIGUAL',
+    'DIVIGUAL',
+    'MODIGUAL',
+    'POTIGUAK',
+    'IGUALIGUAL',
+    'DIFERENTE',
+    'MAYORQUE',
+    'MAYORIGUALQUE',
+    'MENORQUE',
+    'MENORIGUALQUE',
+    'SUMA',
+    'RESTA',
+    'MULTIPLICACION',
+    'DIVISION',
+    'AND',
+    'NOT',
+    'OR'
+) + tuple(reserved.values())
 
 # Maria Rivera
 
 # Asignaciones
-def IGUAL(t):
+t_POINT = r'\.'
+t_COLON = r':'
+t_COMMA = r','
+t_SEMICOLON = r';'
+t_OPEN_PARENTHESIS = r'\('
+t_CLOSE_PARENTHESIS = r'\)'
+t_OPEN_BRACKET = r'\['
+t_CLOSE_BRACKET = r'\]'
+t_OPEN_BRACE = r'\{'
+t_CLOSE_BRACE = r'\}'
+t_LINE_BREAK = r'\n'
+t_SINGLE_QUOTE = r'\''
+t_DOUBLE_QUOTES = r'\"'
+t_BACKSLASH = r'\\'
+
+def t_IGUAL(t):
     r'='
     return t
 
-# A regular expression rule with some action code
 
 def t_MASIGUAL(t):
     r'\+='
     return t
 
+
 def t_MENOSIGUAL(t):
     r'=='
     return t
+
 
 def t_PORIGUAL(t):
     r'\*='
     return t
 
+
 def t_DIVIGUAL(t):
     r'/='
     return t
 
+
 def t_MODIGUAL(t):
     r'%='
     return t
+
 
 def t_POTIGUAL(t):
     r'%='
     return t
 
 # Operadores de comparación
-def IGUALIGUAL(t):
+
+
+def t_IGUALIGUAL(t):
     r'=='
     return t
 
-def DIFERENTE(t):
+
+def t_DIFERENTE(t):
     r'!='
     return t
 
-def MAYORQUE(t):
+
+def t_MAYORQUE(t):
     r'>'
     return t
 
-def MAYORIGUALQUE(t):
+
+def t_MAYORIGUALQUE(t):
     r'>='
     return t
 
-def MENORQUE(t):
+
+def t_MENORQUE(t):
     r'<'
     return t
 
-def MENORIGUALQUE(t):
+
+def t_MENORIGUALQUE(t):
     r'<='
     return t
 
 # Operadores Aritméticos
+
+
 def t_SUMA(t):
     r'\+'
     return t
+
 
 def t_RESTA(t):
     r'-'
     return t
 
+
 def t_MULTIPLICACION(t):
     r'\*'
     return t
+
 
 def t_DIVISION(t):
     r'/'
     return t
 
 # Operadores lógicos
+
+
 def t_AND(t):
     r'&&'
     return t
 
+
 def t_OR(t):
-    r'||'
+    r'[|]{2}'
     return t
+
 
 def t_NOT(t):
     r'\!'
     return t
+
 
 precedencia = (
     ('IZQUIERDA', 'SUMA', 'RESTA'),
@@ -166,11 +208,14 @@ precedencia = (
 
 nombres = {}
 
+
 def p_ASIGNACION(p):
     nombres[p[1]] = p[3]
 
+
 def p_DECLARACION(p):
     print(p[1])
+
 
 def p_EXPRESION_ARITMETICA(p):
     if p[2] == '+':
@@ -182,8 +227,10 @@ def p_EXPRESION_ARITMETICA(p):
     elif p[2] == '/':
         p[0] = p[1] / p[3]
 
+
 def p_NEGACION(p):
     p[0] = -p[2]
+
 
 def p_NUMBER(p):
     p[0] = p[1]
@@ -191,10 +238,13 @@ def p_NUMBER(p):
 # Maria Rivera
 
 # A regular expression rule with some action code
+
+
 def t_NUMBER(t):
     r'\d+'
     t.value = int(t.value)
     return t
+
 
 def t_NAME(t):  # Carlos Moncayo
     r'[a-zA-Z_\$]{1}[a-zA-Z0-9_\$]*'
@@ -203,14 +253,19 @@ def t_NAME(t):  # Carlos Moncayo
     return t
 
 # Define a rule so we can track line numbers
+
+
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore = ' \t'
 
 # Error handling rule
+
+
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
@@ -225,7 +280,7 @@ lexer = lex.lex()
 # Test it out
 data = '''
 3 + 4 * 10
-+ -20 *2
++ -20 *2 ||
 '''
 
 # Give the lexer some input
