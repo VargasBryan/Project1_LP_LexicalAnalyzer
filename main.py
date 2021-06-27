@@ -36,6 +36,8 @@ reserved = {  # Carlos Moncayo
 }
 # List of token names.   #Bryan Vargas
 tokens = (
+    'COMMENTS',
+    'NAME',
     'NUMBER',
     'POINT',
     'COLON',
@@ -157,6 +159,10 @@ def t_MENORIGUALQUE(t):
     r'<='
     return t
 
+def t_COMMENTS(t):
+    r'\//.*'
+    pass
+
 # Operadores Aritméticos
 
 
@@ -243,6 +249,7 @@ def t_NUMBER(t):
     return t
 
 
+
 def t_NAME(t):  # Carlos Moncayo
     r'[a-zA-Z_\$]{1}[a-zA-Z0-9_\$]*'
     t.type = reserved.get(t.value, 'NAME')
@@ -262,7 +269,6 @@ t_ignore = ' \t'
 
 # Error handling rule
 
-
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
     t.lexer.skip(1)
@@ -277,7 +283,7 @@ lexer = lex.lex()
 # Test it out
 data = '''
 3 + 4 * 10
-+ -20 *2 ||
++ -20 *2 / //
 '''
 
 # Give the lexer some input
