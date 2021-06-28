@@ -33,8 +33,12 @@ reserved = {  # Carlos Moncayo
     'undefined': 'UNDEFINED',
     'length': 'LENGTH',
     'Set': 'SET',
-    'Map': 'MAP'
+    'Map': 'MAP',
+    'add' : 'ADD',
+    'delete' : 'DELETE',
+    'clear' : 'CLEAR'
 }
+
 # List of token names.   #Bryan Vargas
 tokens = (
     'COMMENTS',
@@ -54,12 +58,15 @@ tokens = (
     'DOUBLE_QUOTES',
     'BACKSLASH',
     'IGUAL',
+    'POP',
+    'UNSHIFT',
+    'PUSH',
     'MASIGUAL',
     'MENOSIGUAL',
     'PORIGUAL',
     'DIVIGUAL',
     'MODIGUAL',
-    'POTIGUAK',
+    'POTIGUAL',
     'IGUALIGUAL',
     'DIFERENTE',
     'MAYORQUE',
@@ -89,6 +96,9 @@ def t_CHAR(t):
 
 
 # Asignaciones
+t_POP = r'pop'
+t_PUSH = r'push'
+t_UNSHIFT = r'unshift'
 t_POINT = r'\.'
 t_COLON = r':'
 t_COMMA = r','
@@ -115,7 +125,7 @@ def t_MASIGUAL(t):
 
 
 def t_MENOSIGUAL(t):
-    r'=='
+    r'-='
     return t
 
 
@@ -218,42 +228,6 @@ def t_NOT(t):
     r'\!'
     return t
 
-"""
-precedencia = (
-    ('IZQUIERDA', 'SUMA', 'RESTA'),
-    ('IZQUIERDA', 'MULTIPLICACION', 'DIVISION'),
-    ('DERECHA', 'NEGACION'),
-)
-
-nombres = {}
-
-
-def p_ASIGNACION(p):
-    nombres[p[1]] = p[3]
-
-
-def p_DECLARACION(p):
-    print(p[1])
-
-
-def p_EXPRESION_ARITMETICA(p):
-    if p[2] == '+':
-        p[0] = p[1] + p[3]
-    elif p[2] == '-':
-        p[0] = p[1] - p[3]
-    elif p[2] == '*':
-        p[0] = p[1] * p[3]
-    elif p[2] == '/':
-        p[0] = p[1] / p[3]
-
-
-def p_NEGACION(p):
-    p[0] = -p[2]
-
-
-def p_NUMBER(p):
-    p[0] = p[1]
-"""
 # Maria Rivera
 
 # A regular expression rule with some action code
@@ -302,6 +276,7 @@ data = ''' 89
 hola
 ""
 "
+pop
 '''
 
 # Give the lexer some input
