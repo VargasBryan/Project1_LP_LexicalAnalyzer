@@ -37,7 +37,6 @@ reserved = {  # Carlos Moncayo
 # List of token names.   #Bryan Vargas
 tokens = (
     'COMMENTS',
-    'NAME',
     'NUMBER',
     'POINT',
     'COLON',
@@ -73,10 +72,20 @@ tokens = (
     'AND',
     'NOT',
     'OR',
-    'LONGCOMMENT'
+    'LONGCOMMENT',
+    'NAME'
 ) + tuple(reserved.values())
 
 # Maria Rivera
+
+def t_STRING(t):
+    r'\".*\"'
+    return t
+
+def t_CHAR(t):
+    r'\".\"'
+    return t
+
 
 # Asignaciones
 t_POINT = r'\.'
@@ -287,16 +296,11 @@ lexer = lex.lex()
 
 
 # Test it out
-data = '''
-3 + 4 * 10
-+ -20 *2 / // 43
-4 hola
-/*
- 
- hola
-adios
-*/
-que tal
+data = ''' 89
+"asdasdasd"
+hola
+""
+"
 '''
 
 # Give the lexer some input
