@@ -12,7 +12,9 @@ def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     | dataStruct expression
     | controlStruct
     | controlStruct expression
-    | methodsSet'''
+    | methodsSet
+    | mapFunctions
+    | arrayFn '''
 
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
     '''variable : type NAME IGUAL datatype SEMICOLON
@@ -21,20 +23,13 @@ def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
 
 def p_controlStruct_expr(p): #Carlos Moncayo y Maria Rivera
     '''controlStruct : while
+    | for
     | if'''
 
 def p_dataStruct_expr(p): #Carlos Moncayo y Maria Rivera
     '''dataStruct : array
-        | map
-        | NAME arrayFn'''
-
-def p_controlStruct_expr(p): #Carlos Moncayo y Maria Rivera
-    '''controlStruct : while
-    | for'''
-
-def p_dataStruct_expr(p): #Carlos Moncayo y Maria Rivera
-    '''dataStruct : array
-    | set '''
+    | set
+    | map '''
 
 def p_while_expr(p):   #Carlos Moncayo
     '''while : WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
@@ -47,11 +42,11 @@ def p_if_expr(p): #Maria Rivera
     | soloIf else'''
 
 def p_soloIf_expr(p): #Maria Rivera
-    ' soloIf : IF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE'
+    ' soloIf : IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE'
 
 def p_elseIf_expr(p): #Maria Rivera
-    ''' elseIf : ELSEIF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
-        | ELSEIF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf'''
+    ''' elseIf : ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+        | ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf'''
 
 def p_else_expr(p): #Maria Rivera
     ' else : ELSE OPEN_BRACE expression CLOSE_BRACE'
@@ -66,6 +61,7 @@ def p_comparacion_expr(p):
 
 def p_controlArg_expr(p):
     '''controlArg : argUnico comparacion argUnico'''
+
 def p_for_expr(p):  #Bryan Vargas
     'for : FOR OPEN_PARENTHESIS inicialization SEMICOLON condition SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '
 
@@ -144,21 +140,27 @@ def p_generarMap_expr(p): #Maria Rivera
 
 def p_tuplas_expr(p): #Maria Rivera
     '''tuplas : tupla
-        | tupla tuplas '''
+        | tupla COMMA tuplas '''
 
 def p_tupla_expr(p): #Maria Rivera
     ''' tupla : OPEN_BRACKET datatype CLOSE_BRACKET
         | OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET'''
 
+def p_mapFunctions_expr(p): #Maria Rivera
+    '''mapFunctions : NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+        | NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+        | NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON'''
+
 def p_arrayFn_expr(p):
-    '''arrayFn : POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS
-    | POINT PUSH OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS
-    | POINT UNSHIFT OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS'''
+    '''arrayFn : NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS
+    | NAME POINT PUSH OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS
+    | NAME POINT UNSHIFT OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS'''
 
 def p_argUnico_expr(p):
     '''argUnico : NUMBER
     | STRING
     | NAME'''
+
 def p_set_expr(p):  #Bryan Vargas
     '''set : type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
     | type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
@@ -170,8 +172,7 @@ def p_set_expr(p):  #Bryan Vargas
 def p_methodsSet_expr(p):  #Bryan Vargas
     '''methodsSet : NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
     | NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
-    | NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
-    '''
+    | NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON '''
 
 def p_items_expr(p):  #Carlos Moncayo y Maria Rivera
     '''items : numeros

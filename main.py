@@ -36,7 +36,9 @@ reserved = {  # Carlos Moncayo
     'Map': 'MAP',
     'add' : 'ADD',
     'delete' : 'DELETE',
-    'clear' : 'CLEAR'
+    'clear' : 'CLEAR',
+    'get' : 'GET',
+    'has' : 'HAS',
 }
 
 # List of token names.   #Bryan Vargas
