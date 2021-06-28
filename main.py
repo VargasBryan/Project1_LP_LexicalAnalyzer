@@ -53,6 +53,9 @@ tokens = (
     'DOUBLE_QUOTES',
     'BACKSLASH',
     'IGUAL',
+    'POP',
+    'UNSHIFT',
+    'PUSH',
     'MASIGUAL',
     'MENOSIGUAL',
     'PORIGUAL',
@@ -88,6 +91,9 @@ def t_CHAR(t):
 
 
 # Asignaciones
+t_POP = r'pop'
+t_PUSH = r'push'
+t_UNSHIFT = r'unshift'
 t_POINT = r'\.'
 t_COLON = r':'
 t_COMMA = r','
@@ -301,6 +307,7 @@ data = ''' 89
 hola
 ""
 "
+pop
 '''
 
 # Give the lexer some input

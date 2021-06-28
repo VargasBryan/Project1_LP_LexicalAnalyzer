@@ -14,7 +14,8 @@ def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     | controlStruct expression'''
 
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
-    'variable : type NAME IGUAL datatype SEMICOLON'
+    '''variable : type NAME IGUAL datatype SEMICOLON
+    | NAME arrayFn'''
 
 def p_controlStruct_expr(p): #Carlos Moncayo y Maria Rivera
     'controlStruct : while'
@@ -23,8 +24,19 @@ def p_dataStruct_expr(p): #Carlos Moncayo y Maria Rivera
     'dataStruct : array'
 
 def p_while_expr(p):   #Carlos Moncayo
-    '''while : WHILE OPEN_PARENTHESIS expression CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    '''while : WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
     | WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE'''
+
+def p_comparacion_expr(p):
+    '''comparacion : IGUALIGUAL
+    | DIFERENTE
+    | MAYORQUE
+    | MAYORIGUALQUE
+    | MENORQUE
+    | MENORIGUALQUE'''
+
+def p_controlArg_expr(p):
+    '''controlArg : argUnico comparacion argUnico'''
 
 def p_operations(p): #Carlos Moncayo y Maria Rivera
     '''operations : NUMBER operand NUMBER'''
@@ -55,6 +67,15 @@ def p_array_expr(p):    #Carlos Moncayo
     '''array : type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
     | type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON'''
 
+def p_arrayFn_expr(p):
+    '''arrayFn : POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS
+    | POINT PUSH OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS
+    | POINT UNSHIFT OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS'''
+
+def p_argUnico_expr(p):
+    '''argUnico : NUMBER
+    | STRING
+    | NAME'''
 
 def p_items_expr(p):  #Carlos Moncayo y Maria Rivera
     '''items : numeros
