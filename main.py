@@ -32,8 +32,12 @@ reserved = {  # Carlos Moncayo
     'undefined': 'UNDEFINED',
     'length': 'LENGTH',
     'Set': 'SET',
-    'Map': 'MAP'
+    'Map': 'MAP',
+    'add' : 'ADD',
+    'delete' : 'DELETE',
+    'clear' : 'CLEAR'
 }
+
 # List of token names.   #Bryan Vargas
 tokens = (
     'COMMENTS',

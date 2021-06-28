@@ -11,7 +11,8 @@ def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     | dataStruct
     | dataStruct expression
     | controlStruct
-    | controlStruct expression'''
+    | controlStruct expression
+    | methodsSet'''
 
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
     'variable : type NAME IGUAL datatype SEMICOLON'
@@ -83,7 +84,16 @@ def p_array_expr(p):    #Carlos Moncayo
 def p_set_expr(p):  #Bryan Vargas
     '''set : type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
     | type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
-    | type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
+    | type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    | NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    | NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    | NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
+
+def p_methodsSet_expr(p):  #Bryan Vargas
+    '''methodsSet : NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    | NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    | NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    '''
 
 def p_items_expr(p):  #Carlos Moncayo y Maria Rivera
     '''items : numeros
