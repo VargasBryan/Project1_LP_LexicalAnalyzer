@@ -58,7 +58,7 @@ tokens = (
     'PORIGUAL',
     'DIVIGUAL',
     'MODIGUAL',
-    'POTIGUAK',
+    'POTIGUAL',
     'IGUALIGUAL',
     'DIFERENTE',
     'MAYORQUE',
@@ -114,7 +114,7 @@ def t_MASIGUAL(t):
 
 
 def t_MENOSIGUAL(t):
-    r'=='
+    r'-='
     return t
 
 
