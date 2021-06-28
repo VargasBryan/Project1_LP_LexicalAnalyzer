@@ -21,7 +21,8 @@ def p_controlStruct_expr(p): #Carlos Moncayo y Maria Rivera
     | for'''
 
 def p_dataStruct_expr(p): #Carlos Moncayo y Maria Rivera
-    'dataStruct : array'
+    '''dataStruct : array
+    | set '''
 
 def p_while_expr(p):   #Carlos Moncayo
     '''while : WHILE OPEN_PARENTHESIS expression CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
@@ -30,11 +31,11 @@ def p_while_expr(p):   #Carlos Moncayo
 def p_for_expr(p):  #Bryan Vargas
     'for : FOR OPEN_PARENTHESIS inicialization SEMICOLON condition SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '
 
-def p_inicialization(p):    #Bryan Vargas
+def p_inicialization(p):   #Bryan Vargas
     '''inicialization : type NAME IGUAL NUMBER
     | NAME IGUAL NUMBER'''
 
-def p_condition(p):     #Bryan Vargas
+def p_condition(p):    #Bryan Vargas
     'condition : NAME clause value '
 
 def p_operations(p): #Carlos Moncayo y Maria Rivera
@@ -79,6 +80,10 @@ def p_array_expr(p):    #Carlos Moncayo
     '''array : type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
     | type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON'''
 
+def p_set_expr(p):  #Bryan Vargas
+    '''set : type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    | type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    | type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
 
 def p_items_expr(p):  #Carlos Moncayo y Maria Rivera
     '''items : numeros
@@ -91,6 +96,11 @@ def p_numeros_expr(p):   #Carlos Moncayo y Maria Rivera
 def p_cadena_expr(p):   #Carlos Moncayo y Maria Rivera
     '''cadena : STRING 
     | STRING COMMA cadena'''
+
+def p_element_expr(p):  #Bryan Vargas
+    '''element : STRING
+    | NUMBER
+    | NAME'''
 
 # Error rule for syntax errors
 def p_error(p):
