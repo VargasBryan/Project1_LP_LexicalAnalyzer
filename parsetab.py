@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ARRAY BACKSLASH BOOLEAN BREAK CASE CHAR CLASS CLOSE_BRACE CLOSE_BRACKET CLOSE_PARENTHESIS COLON COMMA COMMENTS CONST DEFAULT DIFERENTE DIVIGUAL DIVISION DOUBLE_QUOTES ELSE FALSE FLOAT FOR FUNCTION IF IGUAL IGUALIGUAL INT LENGTH LET LINE_BREAK LONGCOMMENT MAP MASIGUAL MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MENOSIGUAL MODIGUAL MULTIPLICACION NAME NEW NOT NULL NUMBER OPEN_BRACE OPEN_BRACKET OPEN_PARENTHESIS OR POINT PORIGUAL POTIGUAK RESTA RETURN SEMICOLON SET SINGLE_QUOTE STATIC STRING SUMA SWITCH THEN TOSTRING TRUE TYPEOF UNDEFINED VAR WHILEexpression : variable\n    | variable expression\n    | dataStruct\n    | dataStruct expression\n    | controlStruct\n    | controlStruct expressionvariable : type NAME IGUAL datatype SEMICOLONcontrolStruct : whiledataStruct : arraywhile : WHILE OPEN_PARENTHESIS expression CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE\n    | WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACEoperations : NUMBER operand NUMBERdatatype : NUMBER\n    | STRING\n    | operations\n    | CHARoperand : SUMA \n    | RESTA \n    | MULTIPLICACION \n    | DIVISIONbool : TRUE\n    | FALSEtype : CONST\n    | LET\n    | VARarray : type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON\n    | type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLONitems : numeros\n    | cadenanumeros : NUMBER\n    | NUMBER COMMA numeroscadena : STRING\n    | STRING COMMA cadena'
+_lr_signature = 'AND ARRAY BACKSLASH BOOLEAN BREAK CASE CHAR CLASS CLOSE_BRACE CLOSE_BRACKET CLOSE_PARENTHESIS COLON COMMA COMMENTS CONST DEFAULT DIFERENTE DIVIGUAL DIVISION DOUBLE_QUOTES ELSE ELSEIF FALSE FLOAT FOR FUNCTION IF IGUAL IGUALIGUAL INT LENGTH LET LINE_BREAK LONGCOMMENT MAP MASIGUAL MAYORIGUALQUE MAYORQUE MENORIGUALQUE MENORQUE MENOSIGUAL MODIGUAL MULTIPLICACION NAME NEW NOT NULL NUMBER OPEN_BRACE OPEN_BRACKET OPEN_PARENTHESIS OR POINT PORIGUAL POTIGUAK RESTA RETURN SEMICOLON SET SINGLE_QUOTE STATIC STRING SUMA SWITCH THEN TOSTRING TRUE TYPEOF UNDEFINED VAR WHILEexpression : variable\n    | variable expression\n    | dataStruct\n    | dataStruct expression\n    | controlStruct\n    | controlStruct expressionvariable : type NAME IGUAL datatype SEMICOLON\n        | type NAME IGUAL operations SEMICOLON\n        | NAME IGUAL datatype SEMICOLONcontrolStruct : while\n    | ifdataStruct : array\n        | mapwhile : WHILE OPEN_PARENTHESIS expression CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE\n    | WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACEif : soloIf \n    | soloIf elseIf\n    | soloIf elseIf else\n    | soloIf else soloIf : IF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE elseIf : ELSEIF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE\n        | ELSEIF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf else : ELSE OPEN_BRACE expression CLOSE_BRACEoperations : NUMBER operand NUMBERdatatype : NUMBER\n    | STRING\n    | CHARoperand : SUMA \n    | RESTA \n    | MULTIPLICACION \n    | DIVISIONbool : TRUE\n    | FALSEtype : CONST\n    | LET\n    | VARarray : type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON\n    | type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLONmap : iniciarMap\n        | escribirMap\n        | generarMap iniciarMap : variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLONescribirMap : variable IGUAL OPEN_BRACE claveValor CLOSE_BRACEclaveValor : clave COLON valor\n    | clave COLON valor COMMA claveValorclave : datatypevalor : datatype\n        | dataStructgenerarMap : variable IGUAL OPEN_BRACE tuplas CLOSE_BRACEtuplas : tupla\n        | tupla tuplas  tupla : OPEN_BRACKET datatype CLOSE_BRACKET\n        | OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKETitems : numeros\n    | cadenanumeros : NUMBER\n    | NUMBER COMMA numeroscadena : STRING \n    | STRING COMMA cadena'
     
-_lr_action_items = {'CONST':([0,2,3,4,6,7,16,31,43,44,52,56,57,59,],[8,8,8,8,-9,-8,8,-7,8,8,-26,-10,-11,-27,]),'LET':([0,2,3,4,6,7,16,31,43,44,52,56,57,59,],[9,9,9,9,-9,-8,9,-7,9,9,-26,-10,-11,-27,]),'VAR':([0,2,3,4,6,7,16,31,43,44,52,56,57,59,],[10,10,10,10,-9,-8,10,-7,10,10,-26,-10,-11,-27,]),'WHILE':([0,2,3,4,6,7,16,31,43,44,52,56,57,59,],[11,11,11,11,-9,-8,11,-7,11,11,-26,-10,-11,-27,]),'$end':([1,2,3,4,6,7,12,13,14,31,52,56,57,59,],[0,-1,-3,-5,-9,-8,-2,-4,-6,-7,-26,-10,-11,-27,]),'CLOSE_PARENTHESIS':([2,3,4,6,7,12,13,14,18,19,20,21,31,33,34,35,36,52,53,54,55,56,57,59,],[-1,-3,-5,-9,-8,-2,-4,-6,29,30,-21,-22,-7,-28,-29,-30,-32,-26,-31,-33,58,-10,-11,-27,]),'CLOSE_BRACE':([2,3,4,6,7,12,13,14,31,50,51,52,56,57,59,],[-1,-3,-5,-9,-8,-2,-4,-6,-7,56,57,-26,-10,-11,-27,]),'NAME':([5,8,9,10,],[15,-23,-24,-25,]),'OPEN_PARENTHESIS':([11,37,],[16,48,]),'IGUAL':([15,],[17,]),'TRUE':([16,],[20,]),'FALSE':([16,],[21,]),'OPEN_BRACKET':([17,],[23,]),'NEW':([17,],[24,]),'NUMBER':([17,23,38,39,40,41,42,46,48,],[25,35,49,-17,-18,-19,-20,35,35,]),'STRING':([17,23,47,48,],[26,36,36,36,]),'CHAR':([17,],[28,]),'SEMICOLON':([22,25,26,27,28,45,49,58,],[31,-13,-14,-15,-16,52,-12,59,]),'ARRAY':([24,],[37,]),'SUMA':([25,],[39,]),'RESTA':([25,],[40,]),'MULTIPLICACION':([25,],[41,]),'DIVISION':([25,],[42,]),'OPEN_BRACE':([29,30,],[43,44,]),'CLOSE_BRACKET':([32,33,34,35,36,53,54,],[45,-28,-29,-30,-32,-31,-33,]),'COMMA':([35,36,],[46,47,]),}
+_lr_action_items = {'NAME':([0,2,3,4,5,7,8,9,10,11,12,13,14,15,16,18,26,27,28,43,45,59,66,67,68,71,72,84,85,87,88,93,104,106,110,114,115,117,122,123,124,],[6,6,6,6,24,-12,-13,-10,-11,-34,-35,-36,-39,-40,-41,-16,6,-17,-19,-18,6,-9,-43,-49,6,-7,-8,6,6,-23,6,108,6,-42,-37,-14,-15,-20,-21,-38,-22,]),'CONST':([0,2,3,4,7,8,9,10,14,15,16,18,26,27,28,43,45,59,66,67,68,71,72,84,85,87,88,104,106,110,114,115,117,122,123,124,],[11,11,11,11,-12,-13,-10,-11,-39,-40,-41,-16,11,-17,-19,-18,11,-9,-43,-49,11,-7,-8,11,11,-23,11,11,-42,-37,-14,-15,-20,-21,-38,-22,]),'LET':([0,2,3,4,7,8,9,10,14,15,16,18,26,27,28,43,45,59,66,67,68,71,72,84,85,87,88,104,106,110,114,115,117,122,123,124,],[12,12,12,12,-12,-13,-10,-11,-39,-40,-41,-16,12,-17,-19,-18,12,-9,-43,-49,12,-7,-8,12,12,-23,12,12,-42,-37,-14,-15,-20,-21,-38,-22,]),'VAR':([0,2,3,4,7,8,9,10,14,15,16,18,26,27,28,43,45,59,66,67,68,71,72,84,85,87,88,104,106,110,114,115,117,122,123,124,],[13,13,13,13,-12,-13,-10,-11,-39,-40,-41,-16,13,-17,-19,-18,13,-9,-43,-49,13,-7,-8,13,13,-23,13,13,-42,-37,-14,-15,-20,-21,-38,-22,]),'WHILE':([0,2,3,4,7,8,9,10,14,15,16,18,26,27,28,43,45,59,66,67,71,72,84,85,87,88,104,106,110,114,115,117,122,123,124,],[17,17,17,17,-12,-13,-10,-11,-39,-40,-41,-16,17,-17,-19,-18,17,-9,-43,-49,-7,-8,17,17,-23,17,17,-42,-37,-14,-15,-20,-21,-38,-22,]),'IF':([0,2,3,4,7,8,9,10,14,15,16,18,26,27,28,43,45,59,66,67,71,72,84,85,87,88,104,106,110,114,115,117,122,123,124,],[19,19,19,19,-12,-13,-10,-11,-39,-40,-41,-16,19,-17,-19,-18,19,-9,-43,-49,-7,-8,19,19,-23,19,19,-42,-37,-14,-15,-20,19,-38,-22,]),'$end':([1,2,3,4,7,8,9,10,14,15,16,18,20,22,23,27,28,43,59,66,67,71,72,87,106,110,114,115,117,122,123,124,],[0,-1,-3,-5,-12,-13,-10,-11,-39,-40,-41,-16,-2,-4,-6,-17,-19,-18,-9,-43,-49,-7,-8,-23,-42,-37,-14,-15,-20,-21,-38,-22,]),'CLOSE_PARENTHESIS':([2,3,4,7,8,9,10,14,15,16,18,20,22,23,27,28,39,40,41,42,43,46,59,62,65,66,67,71,72,74,75,76,77,87,106,110,111,112,113,114,115,117,122,123,124,],[-1,-3,-5,-12,-13,-10,-11,-39,-40,-41,-16,-2,-4,-6,-17,-19,60,61,-32,-33,-18,64,-9,86,89,-43,-49,-7,-8,-54,-55,-56,-58,-23,-42,-37,-57,-59,121,-14,-15,-20,-21,-38,-22,]),'CLOSE_BRACE':([2,3,4,7,8,9,10,14,15,16,18,20,22,23,27,28,36,37,38,43,48,49,51,59,63,66,67,69,71,72,87,90,91,92,95,102,103,105,106,110,114,115,116,117,118,120,122,123,124,],[-1,-3,-5,-12,-13,-10,-11,-39,-40,-41,-16,-2,-4,-6,-17,-19,-25,-26,-27,-18,66,67,-50,-9,87,-43,-49,-51,-7,-8,-23,-44,-47,-48,-52,114,115,117,-42,-37,-14,-15,122,-20,-45,-53,-21,-38,-22,]),'IGUAL':([2,6,24,59,71,72,94,108,],[21,25,34,-9,-7,-8,21,119,]),'COMMA':([7,8,14,15,16,36,37,38,66,67,70,76,77,90,91,92,106,110,123,],[-12,-13,-39,-40,-41,-25,-26,-27,-43,-49,96,98,99,107,-47,-48,-42,-37,-38,]),'OPEN_PARENTHESIS':([17,19,29,47,78,],[26,31,44,65,100,]),'ELSEIF':([18,117,],[29,-20,]),'ELSE':([18,27,117,122,124,],[30,30,-20,-21,-22,]),'NEW':([21,34,119,],[32,57,57,]),'OPEN_BRACE':([21,30,60,61,64,86,],[33,45,84,85,88,104,]),'NUMBER':([25,33,34,53,56,68,79,80,81,82,83,96,98,100,107,119,],[36,36,58,36,76,36,101,-28,-29,-30,-31,36,76,76,36,58,]),'STRING':([25,33,34,53,56,68,96,99,100,107,119,],[37,37,37,37,77,37,37,77,77,37,37,]),'CHAR':([25,33,34,53,68,96,107,119,],[38,38,38,38,38,38,38,38,]),'TRUE':([26,31,44,],[41,41,41,]),'FALSE':([26,31,44,],[42,42,42,]),'MAP':([32,],[47,]),'OPEN_BRACKET':([33,34,51,95,119,120,],[53,56,53,-52,56,-53,]),'SEMICOLON':([35,36,37,38,54,55,58,89,97,101,121,],[59,-25,-26,-27,71,72,-25,106,110,-24,123,]),'COLON':([36,37,38,50,52,],[-25,-26,-27,68,-46,]),'CLOSE_BRACKET':([36,37,38,70,73,74,75,76,77,109,111,112,],[-25,-26,-27,95,97,-54,-55,-56,-58,120,-57,-59,]),'ARRAY':([57,],[78,]),'SUMA':([58,],[80,]),'RESTA':([58,],[81,]),'MULTIPLICACION':([58,],[82,]),'DIVISION':([58,],[83,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,2,3,4,16,43,44,],[1,12,13,14,18,50,51,]),'variable':([0,2,3,4,16,43,44,],[2,2,2,2,2,2,2,]),'dataStruct':([0,2,3,4,16,43,44,],[3,3,3,3,3,3,3,]),'controlStruct':([0,2,3,4,16,43,44,],[4,4,4,4,4,4,4,]),'type':([0,2,3,4,16,43,44,],[5,5,5,5,5,5,5,]),'array':([0,2,3,4,16,43,44,],[6,6,6,6,6,6,6,]),'while':([0,2,3,4,16,43,44,],[7,7,7,7,7,7,7,]),'bool':([16,],[19,]),'datatype':([17,],[22,]),'operations':([17,],[27,]),'items':([23,48,],[32,55,]),'numeros':([23,46,48,],[33,53,33,]),'cadena':([23,47,48,],[34,54,34,]),'operand':([25,],[38,]),}
+_lr_goto_items = {'expression':([0,2,3,4,26,45,84,85,88,104,],[1,20,22,23,39,63,102,103,105,116,]),'variable':([0,2,3,4,26,45,68,84,85,88,104,],[2,2,2,2,2,2,94,2,2,2,2,]),'dataStruct':([0,2,3,4,26,45,68,84,85,88,104,],[3,3,3,3,3,3,92,3,3,3,3,]),'controlStruct':([0,2,3,4,26,45,84,85,88,104,],[4,4,4,4,4,4,4,4,4,4,]),'type':([0,2,3,4,26,45,68,84,85,88,104,],[5,5,5,5,5,5,93,5,5,5,5,]),'array':([0,2,3,4,26,45,68,84,85,88,104,],[7,7,7,7,7,7,7,7,7,7,7,]),'map':([0,2,3,4,26,45,68,84,85,88,104,],[8,8,8,8,8,8,8,8,8,8,8,]),'while':([0,2,3,4,26,45,84,85,88,104,],[9,9,9,9,9,9,9,9,9,9,]),'if':([0,2,3,4,26,45,84,85,88,104,],[10,10,10,10,10,10,10,10,10,10,]),'iniciarMap':([0,2,3,4,26,45,68,84,85,88,104,],[14,14,14,14,14,14,14,14,14,14,14,]),'escribirMap':([0,2,3,4,26,45,68,84,85,88,104,],[15,15,15,15,15,15,15,15,15,15,15,]),'generarMap':([0,2,3,4,26,45,68,84,85,88,104,],[16,16,16,16,16,16,16,16,16,16,16,]),'soloIf':([0,2,3,4,26,45,84,85,88,104,122,],[18,18,18,18,18,18,18,18,18,18,124,]),'elseIf':([18,],[27,]),'else':([18,27,],[28,43,]),'datatype':([25,33,34,53,68,96,107,119,],[35,52,54,70,91,109,52,54,]),'bool':([26,31,44,],[40,46,62,]),'claveValor':([33,107,],[48,118,]),'tuplas':([33,51,],[49,69,]),'clave':([33,107,],[50,50,]),'tupla':([33,51,],[51,51,]),'operations':([34,119,],[55,55,]),'items':([56,100,],[73,113,]),'numeros':([56,98,100,],[74,111,74,]),'cadena':([56,99,100,],[75,112,75,]),'operand':([58,],[79,]),'valor':([68,],[90,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,37 +27,63 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> variable','expression',1,'p_expression_expr','sintactical.py',20),
-  ('expression -> variable expression','expression',2,'p_expression_expr','sintactical.py',21),
-  ('expression -> dataStruct','expression',1,'p_expression_expr','sintactical.py',22),
-  ('expression -> dataStruct expression','expression',2,'p_expression_expr','sintactical.py',23),
-  ('expression -> controlStruct','expression',1,'p_expression_expr','sintactical.py',24),
-  ('expression -> controlStruct expression','expression',2,'p_expression_expr','sintactical.py',25),
-  ('variable -> type NAME IGUAL datatype SEMICOLON','variable',5,'p_variable_expr','sintactical.py',28),
-  ('controlStruct -> while','controlStruct',1,'p_controlStruct_expr','sintactical.py',31),
-  ('dataStruct -> array','dataStruct',1,'p_dataStruct_expr','sintactical.py',34),
-  ('while -> WHILE OPEN_PARENTHESIS expression CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE','while',7,'p_while_expr','sintactical.py',37),
-  ('while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE','while',7,'p_while_expr','sintactical.py',38),
-  ('operations -> NUMBER operand NUMBER','operations',3,'p_operations','sintactical.py',41),
-  ('datatype -> NUMBER','datatype',1,'p_datatype_expr','sintactical.py',44),
-  ('datatype -> STRING','datatype',1,'p_datatype_expr','sintactical.py',45),
-  ('datatype -> operations','datatype',1,'p_datatype_expr','sintactical.py',46),
-  ('datatype -> CHAR','datatype',1,'p_datatype_expr','sintactical.py',47),
-  ('operand -> SUMA','operand',1,'p_operand_expr','sintactical.py',50),
-  ('operand -> RESTA','operand',1,'p_operand_expr','sintactical.py',51),
-  ('operand -> MULTIPLICACION','operand',1,'p_operand_expr','sintactical.py',52),
-  ('operand -> DIVISION','operand',1,'p_operand_expr','sintactical.py',53),
-  ('bool -> TRUE','bool',1,'p_bool_expr','sintactical.py',56),
-  ('bool -> FALSE','bool',1,'p_bool_expr','sintactical.py',57),
-  ('type -> CONST','type',1,'p_type_expr','sintactical.py',60),
-  ('type -> LET','type',1,'p_type_expr','sintactical.py',61),
-  ('type -> VAR','type',1,'p_type_expr','sintactical.py',62),
+  ('expression -> variable','expression',1,'p_expression_expr','sintactical.py',9),
+  ('expression -> variable expression','expression',2,'p_expression_expr','sintactical.py',10),
+  ('expression -> dataStruct','expression',1,'p_expression_expr','sintactical.py',11),
+  ('expression -> dataStruct expression','expression',2,'p_expression_expr','sintactical.py',12),
+  ('expression -> controlStruct','expression',1,'p_expression_expr','sintactical.py',13),
+  ('expression -> controlStruct expression','expression',2,'p_expression_expr','sintactical.py',14),
+  ('variable -> type NAME IGUAL datatype SEMICOLON','variable',5,'p_variable_expr','sintactical.py',17),
+  ('variable -> type NAME IGUAL operations SEMICOLON','variable',5,'p_variable_expr','sintactical.py',18),
+  ('variable -> NAME IGUAL datatype SEMICOLON','variable',4,'p_variable_expr','sintactical.py',19),
+  ('controlStruct -> while','controlStruct',1,'p_controlStruct_expr','sintactical.py',22),
+  ('controlStruct -> if','controlStruct',1,'p_controlStruct_expr','sintactical.py',23),
+  ('dataStruct -> array','dataStruct',1,'p_dataStruct_expr','sintactical.py',26),
+  ('dataStruct -> map','dataStruct',1,'p_dataStruct_expr','sintactical.py',27),
+  ('while -> WHILE OPEN_PARENTHESIS expression CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE','while',7,'p_while_expr','sintactical.py',30),
+  ('while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE','while',7,'p_while_expr','sintactical.py',31),
+  ('if -> soloIf','if',1,'p_if_expr','sintactical.py',34),
+  ('if -> soloIf elseIf','if',2,'p_if_expr','sintactical.py',35),
+  ('if -> soloIf elseIf else','if',3,'p_if_expr','sintactical.py',36),
+  ('if -> soloIf else','if',2,'p_if_expr','sintactical.py',37),
+  ('soloIf -> IF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE','soloIf',7,'p_soloIf_expr','sintactical.py',40),
+  ('elseIf -> ELSEIF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE','elseIf',7,'p_elseIf_expr','sintactical.py',43),
+  ('elseIf -> ELSEIF OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf','elseIf',8,'p_elseIf_expr','sintactical.py',44),
+  ('else -> ELSE OPEN_BRACE expression CLOSE_BRACE','else',4,'p_else_expr','sintactical.py',47),
+  ('operations -> NUMBER operand NUMBER','operations',3,'p_operations','sintactical.py',50),
+  ('datatype -> NUMBER','datatype',1,'p_datatype_expr','sintactical.py',53),
+  ('datatype -> STRING','datatype',1,'p_datatype_expr','sintactical.py',54),
+  ('datatype -> CHAR','datatype',1,'p_datatype_expr','sintactical.py',55),
+  ('operand -> SUMA','operand',1,'p_operand_expr','sintactical.py',58),
+  ('operand -> RESTA','operand',1,'p_operand_expr','sintactical.py',59),
+  ('operand -> MULTIPLICACION','operand',1,'p_operand_expr','sintactical.py',60),
+  ('operand -> DIVISION','operand',1,'p_operand_expr','sintactical.py',61),
+  ('bool -> TRUE','bool',1,'p_bool_expr','sintactical.py',64),
+  ('bool -> FALSE','bool',1,'p_bool_expr','sintactical.py',65),
+  ('type -> CONST','type',1,'p_type_expr','sintactical.py',68),
+  ('type -> LET','type',1,'p_type_expr','sintactical.py',69),
+  ('type -> VAR','type',1,'p_type_expr','sintactical.py',70),
   ('array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON','array',7,'p_array_expr','sintactical.py',74),
   ('array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON','array',9,'p_array_expr','sintactical.py',75),
-  ('items -> numeros','items',1,'p_items_expr','sintactical.py',79),
-  ('items -> cadena','items',1,'p_items_expr','sintactical.py',80),
-  ('numeros -> NUMBER','numeros',1,'p_numeros_expr','sintactical.py',83),
-  ('numeros -> NUMBER COMMA numeros','numeros',3,'p_numeros_expr','sintactical.py',84),
-  ('cadena -> STRING','cadena',1,'p_cadena_expr','sintactical.py',87),
-  ('cadena -> STRING COMMA cadena','cadena',3,'p_cadena_expr','sintactical.py',88),
+  ('map -> iniciarMap','map',1,'p_map_expr','sintactical.py',78),
+  ('map -> escribirMap','map',1,'p_map_expr','sintactical.py',79),
+  ('map -> generarMap','map',1,'p_map_expr','sintactical.py',80),
+  ('iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON','iniciarMap',7,'p_iniciarMap_expr','sintactical.py',83),
+  ('escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE','escribirMap',5,'p_escribirMap_expr','sintactical.py',86),
+  ('claveValor -> clave COLON valor','claveValor',3,'p_claveValor_expr','sintactical.py',89),
+  ('claveValor -> clave COLON valor COMMA claveValor','claveValor',5,'p_claveValor_expr','sintactical.py',90),
+  ('clave -> datatype','clave',1,'p_clave_expr','sintactical.py',93),
+  ('valor -> datatype','valor',1,'p_valor_expr','sintactical.py',96),
+  ('valor -> dataStruct','valor',1,'p_valor_expr','sintactical.py',97),
+  ('generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE','generarMap',5,'p_generarMap_expr','sintactical.py',100),
+  ('tuplas -> tupla','tuplas',1,'p_tuplas_expr','sintactical.py',103),
+  ('tuplas -> tupla tuplas','tuplas',2,'p_tuplas_expr','sintactical.py',104),
+  ('tupla -> OPEN_BRACKET datatype CLOSE_BRACKET','tupla',3,'p_tupla_expr','sintactical.py',107),
+  ('tupla -> OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET','tupla',5,'p_tupla_expr','sintactical.py',108),
+  ('items -> numeros','items',1,'p_items_expr','sintactical.py',111),
+  ('items -> cadena','items',1,'p_items_expr','sintactical.py',112),
+  ('numeros -> NUMBER','numeros',1,'p_numeros_expr','sintactical.py',115),
+  ('numeros -> NUMBER COMMA numeros','numeros',3,'p_numeros_expr','sintactical.py',116),
+  ('cadena -> STRING','cadena',1,'p_cadena_expr','sintactical.py',119),
+  ('cadena -> STRING COMMA cadena','cadena',3,'p_cadena_expr','sintactical.py',120),
 ]

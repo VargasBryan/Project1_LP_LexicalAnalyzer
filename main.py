@@ -2,6 +2,7 @@ import ply.lex as lex
 
 reserved = {  # Carlos Moncayo
     'if': 'IF',
+    'else if': 'ELSEIF',
     'then': 'THEN',
     'boolean': 'BOOLEAN',
     'break': 'BREAK',
