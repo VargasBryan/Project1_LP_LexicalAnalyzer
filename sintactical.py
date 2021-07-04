@@ -14,7 +14,8 @@ def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     | controlStruct expression
     | methodsSet
     | mapFunctions
-    | arrayFn '''
+    | arrayFn
+    | declaration '''
 
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
     '''variable : type NAME IGUAL datatype SEMICOLON
@@ -51,26 +52,26 @@ def p_elseIf_expr(p): #Maria Rivera
 def p_else_expr(p): #Maria Rivera
     ' else : ELSE OPEN_BRACE expression CLOSE_BRACE'
 
-def p_comparacion_expr(p):
+"""def p_comparacion_expr(p):
     '''comparacion : IGUALIGUAL
     | DIFERENTE
     | MAYORQUE
     | MAYORIGUALQUE
     | MENORQUE
-    | MENORIGUALQUE'''
+    | MENORIGUALQUE'''"""
 
 def p_controlArg_expr(p):
-    '''controlArg : argUnico comparacion argUnico'''
+    '''controlArg : element clause element'''
 
 def p_for_expr(p):  #Bryan Vargas
-    'for : FOR OPEN_PARENTHESIS inicialization SEMICOLON condition SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '
+    'for : FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '
 
 def p_inicialization(p):   #Bryan Vargas
     '''inicialization : type NAME IGUAL NUMBER
     | NAME IGUAL NUMBER'''
 
-def p_condition(p):    #Bryan Vargas
-    'condition : NAME clause value '
+"""def p_condition(p):    #Bryan Vargas
+    'condition : NAME clause value '"""
 
 def p_operations(p): #Carlos Moncayo y Maria Rivera
     '''operations : NUMBER operand NUMBER
@@ -153,13 +154,13 @@ def p_mapFunctions_expr(p): #Maria Rivera
 
 def p_arrayFn_expr(p):
     '''arrayFn : NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS
-    | NAME POINT PUSH OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS
-    | NAME POINT UNSHIFT OPEN_PARENTHESIS argUnico CLOSE_PARENTHESIS'''
+    | NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS
+    | NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS'''
 
-def p_argUnico_expr(p):
+""" def p_argUnico_expr(p):
     '''argUnico : NUMBER
     | STRING
-    | NAME'''
+    | NAME''' """
 
 def p_set_expr(p):  #Bryan Vargas
     '''set : type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
@@ -190,6 +191,9 @@ def p_element_expr(p):  #Bryan Vargas
     '''element : STRING
     | NUMBER
     | NAME'''
+
+def p_declaration_expr(p):  #Bryan Vargas
+    'declaration : NAME IGUAL element'
 
 # Error rule for syntax errors
 def p_error(p):
