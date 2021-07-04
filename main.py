@@ -2,6 +2,7 @@ import ply.lex as lex
 
 reserved = {  # Carlos Moncayo
     'if': 'IF',
+    'else if': 'ELSEIF',
     'then': 'THEN',
     'boolean': 'BOOLEAN',
     'break': 'BREAK',
@@ -35,7 +36,9 @@ reserved = {  # Carlos Moncayo
     'Map': 'MAP',
     'add' : 'ADD',
     'delete' : 'DELETE',
-    'clear' : 'CLEAR'
+    'clear' : 'CLEAR',
+    'get' : 'GET',
+    'has' : 'HAS',
 }
 
 # List of token names.   #Bryan Vargas
@@ -227,42 +230,6 @@ def t_NOT(t):
     r'\!'
     return t
 
-"""
-precedencia = (
-    ('IZQUIERDA', 'SUMA', 'RESTA'),
-    ('IZQUIERDA', 'MULTIPLICACION', 'DIVISION'),
-    ('DERECHA', 'NEGACION'),
-)
-
-nombres = {}
-
-
-def p_ASIGNACION(p):
-    nombres[p[1]] = p[3]
-
-
-def p_DECLARACION(p):
-    print(p[1])
-
-
-def p_EXPRESION_ARITMETICA(p):
-    if p[2] == '+':
-        p[0] = p[1] + p[3]
-    elif p[2] == '-':
-        p[0] = p[1] - p[3]
-    elif p[2] == '*':
-        p[0] = p[1] * p[3]
-    elif p[2] == '/':
-        p[0] = p[1] / p[3]
-
-
-def p_NEGACION(p):
-    p[0] = -p[2]
-
-
-def p_NUMBER(p):
-    p[0] = p[1]
-"""
 # Maria Rivera
 
 # A regular expression rule with some action code
