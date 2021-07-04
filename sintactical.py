@@ -5,6 +5,9 @@ import ply.yacc as yacc
 # Get the token map from the lexer.  This is required.
 from main import tokens
 
+global flag
+flag=0
+
 def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     '''expression : variable
     | variable expression
@@ -52,8 +55,13 @@ def p_condition(p):    #Bryan Vargas
 
 def p_operations(p): #Carlos Moncayo y Maria Rivera
     '''operations : NUMBER operand NUMBER
-    | NAME SUMA SUMA
-    | NAME RESTA RESTA '''
+    | NAME
+    | NUMBER
+    | NUMBER operand NAME operations
+    | NAME operand NUMBER operations
+    | NAME operand NAME operations
+    | OPEN_PARENTHESIS NAME operand NAME CLOSE_PARENTHESIS operand operations
+    | OPEN_PARENTHESIS NUMBER operand NUMBER CLOSE_PARENTHESIS operand operations'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
     '''datatype : NUMBER
@@ -134,17 +142,16 @@ def p_element_expr(p):  #Bryan Vargas
 
 # Error rule for syntax errors
 def p_error(p):
+    global flag
+    flag=1
     print("Syntax error in input!")
 
 # Build the parser
 parser = yacc.yacc()
 
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s:
-        continue
-    result = parser.parse(s)
-    print(result)
+def sintaxAnalisys(sentence):
+    result = parser.parse(sentence)
+    if flag==0:
+        print("No syntax error found!")
+
+sintaxAnalisys("let x = (100 + 50) * a;")
