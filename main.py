@@ -96,11 +96,19 @@ def t_CHAR(t):
     r'\".\"'
     return t
 
+def t_POP(t):
+    r'pop'
+    return t
+
+def t_PUSH(t):
+    r'push'
+    return t
+
+def t_UNSHIFT(t):
+    r'unshift'
+    return t
 
 # Asignaciones
-t_POP = r'pop'
-t_PUSH = r'push'
-t_UNSHIFT = r'unshift'
 t_POINT = r'\.'
 t_COLON = r':'
 t_COMMA = r','

@@ -1,0 +1,3715 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    BACKSLASH
+    BOOLEAN
+    BREAK
+    CASE
+    CLASS
+    COMMENTS
+    DEFAULT
+    DIVIGUAL
+    DOUBLE_QUOTES
+    FLOAT
+    FUNCTION
+    INT
+    LENGTH
+    LINE_BREAK
+    LONGCOMMENT
+    MASIGUAL
+    MENOSIGUAL
+    MODIGUAL
+    NOT
+    NULL
+    OR
+    PORIGUAL
+    POTIGUAL
+    RETURN
+    SINGLE_QUOTE
+    STATIC
+    SWITCH
+    THEN
+    TOSTRING
+    TYPEOF
+    UNDEFINED
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> variable
+Rule 2     expression -> variable expression
+Rule 3     expression -> dataStruct
+Rule 4     expression -> dataStruct expression
+Rule 5     expression -> controlStruct
+Rule 6     expression -> controlStruct expression
+Rule 7     expression -> methodsSet
+Rule 8     expression -> mapFunctions
+Rule 9     expression -> arrayFn
+Rule 10    expression -> declaration
+Rule 11    variable -> type NAME IGUAL datatype SEMICOLON
+Rule 12    variable -> type NAME IGUAL operations SEMICOLON
+Rule 13    variable -> NAME IGUAL datatype SEMICOLON
+Rule 14    controlStruct -> while
+Rule 15    controlStruct -> for
+Rule 16    controlStruct -> if
+Rule 17    dataStruct -> array
+Rule 18    dataStruct -> set
+Rule 19    dataStruct -> map
+Rule 20    while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+Rule 21    while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+Rule 22    if -> soloIf
+Rule 23    if -> soloIf elseIf
+Rule 24    if -> soloIf elseIf else
+Rule 25    if -> soloIf else
+Rule 26    soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+Rule 27    elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+Rule 28    elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf
+Rule 29    else -> ELSE OPEN_BRACE expression CLOSE_BRACE
+Rule 30    controlArg -> element clause element
+Rule 31    for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+Rule 32    inicialization -> type NAME IGUAL NUMBER
+Rule 33    inicialization -> NAME IGUAL NUMBER
+Rule 34    operations -> NUMBER operand NUMBER
+Rule 35    operations -> NAME
+Rule 36    operations -> NUMBER
+Rule 37    operations -> NUMBER operand NAME operations
+Rule 38    operations -> NAME operand NUMBER operations
+Rule 39    operations -> NUMBER operand NAME
+Rule 40    operations -> NAME operand NUMBER
+Rule 41    operations -> NAME operand NAME operations
+Rule 42    datatype -> NUMBER
+Rule 43    datatype -> STRING
+Rule 44    datatype -> CHAR
+Rule 45    operand -> SUMA
+Rule 46    operand -> RESTA
+Rule 47    operand -> MULTIPLICACION
+Rule 48    operand -> DIVISION
+Rule 49    bool -> TRUE
+Rule 50    bool -> FALSE
+Rule 51    type -> CONST
+Rule 52    type -> LET
+Rule 53    type -> VAR
+Rule 54    clause -> IGUALIGUAL
+Rule 55    clause -> DIFERENTE
+Rule 56    clause -> MAYORQUE
+Rule 57    clause -> MAYORIGUALQUE
+Rule 58    clause -> MENORQUE
+Rule 59    clause -> MENORIGUALQUE
+Rule 60    value -> NAME
+Rule 61    value -> NUMBER
+Rule 62    array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+Rule 63    array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+Rule 64    map -> iniciarMap
+Rule 65    map -> escribirMap
+Rule 66    map -> generarMap
+Rule 67    iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+Rule 68    escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+Rule 69    claveValor -> clave COLON valor
+Rule 70    claveValor -> clave COLON valor COMMA claveValor
+Rule 71    clave -> datatype
+Rule 72    valor -> datatype
+Rule 73    valor -> dataStruct
+Rule 74    generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+Rule 75    tuplas -> tupla
+Rule 76    tuplas -> tupla COMMA tuplas
+Rule 77    tupla -> OPEN_BRACKET datatype CLOSE_BRACKET SEMICOLON
+Rule 78    tupla -> OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET SEMICOLON
+Rule 79    mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+Rule 80    mapFunctions -> NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+Rule 81    mapFunctions -> NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+Rule 82    arrayFn -> NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+Rule 83    arrayFn -> NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+Rule 84    arrayFn -> NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+Rule 85    set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+Rule 86    set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+Rule 87    set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+Rule 88    set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+Rule 89    set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+Rule 90    set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+Rule 91    methodsSet -> NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+Rule 92    methodsSet -> NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+Rule 93    methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+Rule 94    items -> numeros
+Rule 95    items -> cadena
+Rule 96    numeros -> NUMBER
+Rule 97    numeros -> NUMBER COMMA numeros
+Rule 98    cadena -> STRING
+Rule 99    cadena -> STRING COMMA cadena
+Rule 100   element -> STRING
+Rule 101   element -> NUMBER
+Rule 102   element -> NAME
+Rule 103   declaration -> NAME IGUAL element
+
+Terminals, with rules where they appear
+
+ADD                  : 91
+AND                  : 
+ARRAY                : 63
+BACKSLASH            : 
+BOOLEAN              : 
+BREAK                : 
+CASE                 : 
+CHAR                 : 44
+CLASS                : 
+CLEAR                : 79 93
+CLOSE_BRACE          : 20 21 26 27 28 29 31 68 74
+CLOSE_BRACKET        : 62 77 78 86 89
+CLOSE_PARENTHESIS    : 20 21 26 27 28 31 63 67 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93
+COLON                : 69 70
+COMMA                : 70 76 78 97 99
+COMMENTS             : 
+CONST                : 51
+DEFAULT              : 
+DELETE               : 92
+DIFERENTE            : 55
+DIVIGUAL             : 
+DIVISION             : 48
+DOUBLE_QUOTES        : 
+ELSE                 : 29
+ELSEIF               : 27 28
+FALSE                : 50
+FLOAT                : 
+FOR                  : 31
+FUNCTION             : 
+GET                  : 80
+HAS                  : 81
+IF                   : 26
+IGUAL                : 11 12 13 32 33 62 63 67 68 74 85 86 87 88 89 90 103
+IGUALIGUAL           : 54
+INT                  : 
+LENGTH               : 
+LET                  : 52
+LINE_BREAK           : 
+LONGCOMMENT          : 
+MAP                  : 67
+MASIGUAL             : 
+MAYORIGUALQUE        : 57
+MAYORQUE             : 56
+MENORIGUALQUE        : 59
+MENORQUE             : 58
+MENOSIGUAL           : 
+MODIGUAL             : 
+MULTIPLICACION       : 47
+NAME                 : 11 12 13 32 33 35 37 38 39 40 41 41 60 62 63 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 102 103
+NEW                  : 63 67 85 86 87 88 89 90
+NOT                  : 
+NULL                 : 
+NUMBER               : 32 33 34 34 36 37 38 39 40 42 61 96 97 101
+OPEN_BRACE           : 20 21 26 27 28 29 31 68 74
+OPEN_BRACKET         : 62 77 78 86 89
+OPEN_PARENTHESIS     : 20 21 26 27 28 31 63 67 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93
+OR                   : 
+POINT                : 79 80 81 82 83 84 91 92 93
+POP                  : 82
+PORIGUAL             : 
+POTIGUAL             : 
+PUSH                 : 83
+RESTA                : 46
+RETURN               : 
+SEMICOLON            : 11 12 13 31 31 62 63 67 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93
+SET                  : 85 86 87 88 89 90
+SINGLE_QUOTE         : 
+STATIC               : 
+STRING               : 43 98 99 100
+SUMA                 : 45
+SWITCH               : 
+THEN                 : 
+TOSTRING             : 
+TRUE                 : 49
+TYPEOF               : 
+UNDEFINED            : 
+UNSHIFT              : 84
+VAR                  : 53
+WHILE                : 20 21
+error                : 
+
+Nonterminals, with rules where they appear
+
+array                : 17
+arrayFn              : 9
+bool                 : 21
+cadena               : 95 99
+clause               : 30
+clave                : 69 70 80 81
+claveValor           : 68 70
+controlArg           : 20 26 27 28 31
+controlStruct        : 5 6
+dataStruct           : 3 4 73
+datatype             : 11 13 71 72 77 78 78
+declaration          : 10
+element              : 30 30 83 84 87 90 91 92 103
+else                 : 24 25
+elseIf               : 23 24
+escribirMap          : 65
+expression           : 2 4 6 20 21 26 27 28 29 31 0
+for                  : 15
+generarMap           : 66
+if                   : 16
+inicialization       : 31
+iniciarMap           : 64
+items                : 62 63 86 89
+map                  : 19
+mapFunctions         : 8
+methodsSet           : 7
+numeros              : 94 97
+operand              : 34 37 38 39 40 41
+operations           : 12 31 37 38 41
+set                  : 18
+soloIf               : 22 23 24 25 28
+tupla                : 75 76
+tuplas               : 74 76
+type                 : 11 12 32 62 63 85 86 87
+valor                : 69 70
+value                : 
+variable             : 1 2 67 68 74
+while                : 14
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    expression                     shift and go to state 1
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> variable .
+    (2) expression -> variable . expression
+    (67) iniciarMap -> variable . IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> variable . IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> variable . IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    $end            reduce using rule 1 (expression -> variable .)
+    CLOSE_BRACE     reduce using rule 1 (expression -> variable .)
+    IGUAL           shift and go to state 28
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    variable                       shift and go to state 2
+    expression                     shift and go to state 27
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 3
+
+    (3) expression -> dataStruct .
+    (4) expression -> dataStruct . expression
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    $end            reduce using rule 3 (expression -> dataStruct .)
+    CLOSE_BRACE     reduce using rule 3 (expression -> dataStruct .)
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    dataStruct                     shift and go to state 3
+    expression                     shift and go to state 29
+    variable                       shift and go to state 2
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 4
+
+    (5) expression -> controlStruct .
+    (6) expression -> controlStruct . expression
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    $end            reduce using rule 5 (expression -> controlStruct .)
+    CLOSE_BRACE     reduce using rule 5 (expression -> controlStruct .)
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    controlStruct                  shift and go to state 4
+    expression                     shift and go to state 30
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 5
+
+    (7) expression -> methodsSet .
+
+    $end            reduce using rule 7 (expression -> methodsSet .)
+    CLOSE_BRACE     reduce using rule 7 (expression -> methodsSet .)
+
+
+state 6
+
+    (8) expression -> mapFunctions .
+
+    $end            reduce using rule 8 (expression -> mapFunctions .)
+    CLOSE_BRACE     reduce using rule 8 (expression -> mapFunctions .)
+
+
+state 7
+
+    (9) expression -> arrayFn .
+
+    $end            reduce using rule 9 (expression -> arrayFn .)
+    CLOSE_BRACE     reduce using rule 9 (expression -> arrayFn .)
+
+
+state 8
+
+    (10) expression -> declaration .
+
+    $end            reduce using rule 10 (expression -> declaration .)
+    CLOSE_BRACE     reduce using rule 10 (expression -> declaration .)
+
+
+state 9
+
+    (11) variable -> type . NAME IGUAL datatype SEMICOLON
+    (12) variable -> type . NAME IGUAL operations SEMICOLON
+    (62) array -> type . NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> type . NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> type . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    NAME            shift and go to state 31
+
+
+state 10
+
+    (13) variable -> NAME . IGUAL datatype SEMICOLON
+    (91) methodsSet -> NAME . POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> NAME . POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> NAME . POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> NAME . POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> NAME . POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> NAME . POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> NAME . POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> NAME . POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> NAME . POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> NAME . IGUAL element
+    (88) set -> NAME . IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> NAME . IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> NAME . IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    IGUAL           shift and go to state 32
+    POINT           shift and go to state 33
+
+
+state 11
+
+    (17) dataStruct -> array .
+
+    NAME            reduce using rule 17 (dataStruct -> array .)
+    CONST           reduce using rule 17 (dataStruct -> array .)
+    LET             reduce using rule 17 (dataStruct -> array .)
+    VAR             reduce using rule 17 (dataStruct -> array .)
+    WHILE           reduce using rule 17 (dataStruct -> array .)
+    FOR             reduce using rule 17 (dataStruct -> array .)
+    IF              reduce using rule 17 (dataStruct -> array .)
+    $end            reduce using rule 17 (dataStruct -> array .)
+    CLOSE_BRACE     reduce using rule 17 (dataStruct -> array .)
+    COMMA           reduce using rule 17 (dataStruct -> array .)
+
+
+state 12
+
+    (18) dataStruct -> set .
+
+    NAME            reduce using rule 18 (dataStruct -> set .)
+    CONST           reduce using rule 18 (dataStruct -> set .)
+    LET             reduce using rule 18 (dataStruct -> set .)
+    VAR             reduce using rule 18 (dataStruct -> set .)
+    WHILE           reduce using rule 18 (dataStruct -> set .)
+    FOR             reduce using rule 18 (dataStruct -> set .)
+    IF              reduce using rule 18 (dataStruct -> set .)
+    $end            reduce using rule 18 (dataStruct -> set .)
+    CLOSE_BRACE     reduce using rule 18 (dataStruct -> set .)
+    COMMA           reduce using rule 18 (dataStruct -> set .)
+
+
+state 13
+
+    (19) dataStruct -> map .
+
+    NAME            reduce using rule 19 (dataStruct -> map .)
+    CONST           reduce using rule 19 (dataStruct -> map .)
+    LET             reduce using rule 19 (dataStruct -> map .)
+    VAR             reduce using rule 19 (dataStruct -> map .)
+    WHILE           reduce using rule 19 (dataStruct -> map .)
+    FOR             reduce using rule 19 (dataStruct -> map .)
+    IF              reduce using rule 19 (dataStruct -> map .)
+    $end            reduce using rule 19 (dataStruct -> map .)
+    CLOSE_BRACE     reduce using rule 19 (dataStruct -> map .)
+    COMMA           reduce using rule 19 (dataStruct -> map .)
+
+
+state 14
+
+    (14) controlStruct -> while .
+
+    NAME            reduce using rule 14 (controlStruct -> while .)
+    CONST           reduce using rule 14 (controlStruct -> while .)
+    LET             reduce using rule 14 (controlStruct -> while .)
+    VAR             reduce using rule 14 (controlStruct -> while .)
+    WHILE           reduce using rule 14 (controlStruct -> while .)
+    FOR             reduce using rule 14 (controlStruct -> while .)
+    IF              reduce using rule 14 (controlStruct -> while .)
+    $end            reduce using rule 14 (controlStruct -> while .)
+    CLOSE_BRACE     reduce using rule 14 (controlStruct -> while .)
+
+
+state 15
+
+    (15) controlStruct -> for .
+
+    NAME            reduce using rule 15 (controlStruct -> for .)
+    CONST           reduce using rule 15 (controlStruct -> for .)
+    LET             reduce using rule 15 (controlStruct -> for .)
+    VAR             reduce using rule 15 (controlStruct -> for .)
+    WHILE           reduce using rule 15 (controlStruct -> for .)
+    FOR             reduce using rule 15 (controlStruct -> for .)
+    IF              reduce using rule 15 (controlStruct -> for .)
+    $end            reduce using rule 15 (controlStruct -> for .)
+    CLOSE_BRACE     reduce using rule 15 (controlStruct -> for .)
+
+
+state 16
+
+    (16) controlStruct -> if .
+
+    NAME            reduce using rule 16 (controlStruct -> if .)
+    CONST           reduce using rule 16 (controlStruct -> if .)
+    LET             reduce using rule 16 (controlStruct -> if .)
+    VAR             reduce using rule 16 (controlStruct -> if .)
+    WHILE           reduce using rule 16 (controlStruct -> if .)
+    FOR             reduce using rule 16 (controlStruct -> if .)
+    IF              reduce using rule 16 (controlStruct -> if .)
+    $end            reduce using rule 16 (controlStruct -> if .)
+    CLOSE_BRACE     reduce using rule 16 (controlStruct -> if .)
+
+
+state 17
+
+    (51) type -> CONST .
+
+    NAME            reduce using rule 51 (type -> CONST .)
+
+
+state 18
+
+    (52) type -> LET .
+
+    NAME            reduce using rule 52 (type -> LET .)
+
+
+state 19
+
+    (53) type -> VAR .
+
+    NAME            reduce using rule 53 (type -> VAR .)
+
+
+state 20
+
+    (64) map -> iniciarMap .
+
+    NAME            reduce using rule 64 (map -> iniciarMap .)
+    CONST           reduce using rule 64 (map -> iniciarMap .)
+    LET             reduce using rule 64 (map -> iniciarMap .)
+    VAR             reduce using rule 64 (map -> iniciarMap .)
+    WHILE           reduce using rule 64 (map -> iniciarMap .)
+    FOR             reduce using rule 64 (map -> iniciarMap .)
+    IF              reduce using rule 64 (map -> iniciarMap .)
+    $end            reduce using rule 64 (map -> iniciarMap .)
+    CLOSE_BRACE     reduce using rule 64 (map -> iniciarMap .)
+    COMMA           reduce using rule 64 (map -> iniciarMap .)
+
+
+state 21
+
+    (65) map -> escribirMap .
+
+    NAME            reduce using rule 65 (map -> escribirMap .)
+    CONST           reduce using rule 65 (map -> escribirMap .)
+    LET             reduce using rule 65 (map -> escribirMap .)
+    VAR             reduce using rule 65 (map -> escribirMap .)
+    WHILE           reduce using rule 65 (map -> escribirMap .)
+    FOR             reduce using rule 65 (map -> escribirMap .)
+    IF              reduce using rule 65 (map -> escribirMap .)
+    $end            reduce using rule 65 (map -> escribirMap .)
+    CLOSE_BRACE     reduce using rule 65 (map -> escribirMap .)
+    COMMA           reduce using rule 65 (map -> escribirMap .)
+
+
+state 22
+
+    (66) map -> generarMap .
+
+    NAME            reduce using rule 66 (map -> generarMap .)
+    CONST           reduce using rule 66 (map -> generarMap .)
+    LET             reduce using rule 66 (map -> generarMap .)
+    VAR             reduce using rule 66 (map -> generarMap .)
+    WHILE           reduce using rule 66 (map -> generarMap .)
+    FOR             reduce using rule 66 (map -> generarMap .)
+    IF              reduce using rule 66 (map -> generarMap .)
+    $end            reduce using rule 66 (map -> generarMap .)
+    CLOSE_BRACE     reduce using rule 66 (map -> generarMap .)
+    COMMA           reduce using rule 66 (map -> generarMap .)
+
+
+state 23
+
+    (20) while -> WHILE . OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> WHILE . OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_PARENTHESIS shift and go to state 34
+
+
+state 24
+
+    (31) for -> FOR . OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_PARENTHESIS shift and go to state 35
+
+
+state 25
+
+    (22) if -> soloIf .
+    (23) if -> soloIf . elseIf
+    (24) if -> soloIf . elseIf else
+    (25) if -> soloIf . else
+    (27) elseIf -> . ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (28) elseIf -> . ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf
+    (29) else -> . ELSE OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            reduce using rule 22 (if -> soloIf .)
+    CONST           reduce using rule 22 (if -> soloIf .)
+    LET             reduce using rule 22 (if -> soloIf .)
+    VAR             reduce using rule 22 (if -> soloIf .)
+    WHILE           reduce using rule 22 (if -> soloIf .)
+    FOR             reduce using rule 22 (if -> soloIf .)
+    IF              reduce using rule 22 (if -> soloIf .)
+    $end            reduce using rule 22 (if -> soloIf .)
+    CLOSE_BRACE     reduce using rule 22 (if -> soloIf .)
+    ELSEIF          shift and go to state 38
+    ELSE            shift and go to state 39
+
+    elseIf                         shift and go to state 36
+    else                           shift and go to state 37
+
+state 26
+
+    (26) soloIf -> IF . OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_PARENTHESIS shift and go to state 40
+
+
+state 27
+
+    (2) expression -> variable expression .
+
+    $end            reduce using rule 2 (expression -> variable expression .)
+    CLOSE_BRACE     reduce using rule 2 (expression -> variable expression .)
+
+
+state 28
+
+    (67) iniciarMap -> variable IGUAL . NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> variable IGUAL . OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> variable IGUAL . OPEN_BRACE tuplas CLOSE_BRACE
+
+    NEW             shift and go to state 41
+    OPEN_BRACE      shift and go to state 42
+
+
+state 29
+
+    (4) expression -> dataStruct expression .
+
+    $end            reduce using rule 4 (expression -> dataStruct expression .)
+    CLOSE_BRACE     reduce using rule 4 (expression -> dataStruct expression .)
+
+
+state 30
+
+    (6) expression -> controlStruct expression .
+
+    $end            reduce using rule 6 (expression -> controlStruct expression .)
+    CLOSE_BRACE     reduce using rule 6 (expression -> controlStruct expression .)
+
+
+state 31
+
+    (11) variable -> type NAME . IGUAL datatype SEMICOLON
+    (12) variable -> type NAME . IGUAL operations SEMICOLON
+    (62) array -> type NAME . IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> type NAME . IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> type NAME . IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type NAME . IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type NAME . IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    IGUAL           shift and go to state 43
+
+
+state 32
+
+    (13) variable -> NAME IGUAL . datatype SEMICOLON
+    (103) declaration -> NAME IGUAL . element
+    (88) set -> NAME IGUAL . NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> NAME IGUAL . NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> NAME IGUAL . NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    NEW             shift and go to state 47
+    NUMBER          shift and go to state 48
+    STRING          shift and go to state 49
+    CHAR            shift and go to state 50
+    NAME            shift and go to state 44
+
+    datatype                       shift and go to state 45
+    element                        shift and go to state 46
+
+state 33
+
+    (91) methodsSet -> NAME POINT . ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> NAME POINT . DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> NAME POINT . CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> NAME POINT . CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> NAME POINT . GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> NAME POINT . HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> NAME POINT . POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> NAME POINT . PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> NAME POINT . UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    ADD             shift and go to state 51
+    DELETE          shift and go to state 52
+    CLEAR           shift and go to state 53
+    GET             shift and go to state 54
+    HAS             shift and go to state 55
+    POP             shift and go to state 56
+    PUSH            shift and go to state 57
+    UNSHIFT         shift and go to state 58
+
+
+state 34
+
+    (20) while -> WHILE OPEN_PARENTHESIS . controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> WHILE OPEN_PARENTHESIS . bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (30) controlArg -> . element clause element
+    (49) bool -> . TRUE
+    (50) bool -> . FALSE
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    TRUE            shift and go to state 62
+    FALSE           shift and go to state 63
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    controlArg                     shift and go to state 59
+    bool                           shift and go to state 60
+    element                        shift and go to state 61
+
+state 35
+
+    (31) for -> FOR OPEN_PARENTHESIS . inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (32) inicialization -> . type NAME IGUAL NUMBER
+    (33) inicialization -> . NAME IGUAL NUMBER
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+
+    NAME            shift and go to state 68
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+
+    inicialization                 shift and go to state 66
+    type                           shift and go to state 67
+
+state 36
+
+    (23) if -> soloIf elseIf .
+    (24) if -> soloIf elseIf . else
+    (29) else -> . ELSE OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            reduce using rule 23 (if -> soloIf elseIf .)
+    CONST           reduce using rule 23 (if -> soloIf elseIf .)
+    LET             reduce using rule 23 (if -> soloIf elseIf .)
+    VAR             reduce using rule 23 (if -> soloIf elseIf .)
+    WHILE           reduce using rule 23 (if -> soloIf elseIf .)
+    FOR             reduce using rule 23 (if -> soloIf elseIf .)
+    IF              reduce using rule 23 (if -> soloIf elseIf .)
+    $end            reduce using rule 23 (if -> soloIf elseIf .)
+    CLOSE_BRACE     reduce using rule 23 (if -> soloIf elseIf .)
+    ELSE            shift and go to state 39
+
+    else                           shift and go to state 69
+
+state 37
+
+    (25) if -> soloIf else .
+
+    NAME            reduce using rule 25 (if -> soloIf else .)
+    CONST           reduce using rule 25 (if -> soloIf else .)
+    LET             reduce using rule 25 (if -> soloIf else .)
+    VAR             reduce using rule 25 (if -> soloIf else .)
+    WHILE           reduce using rule 25 (if -> soloIf else .)
+    FOR             reduce using rule 25 (if -> soloIf else .)
+    IF              reduce using rule 25 (if -> soloIf else .)
+    $end            reduce using rule 25 (if -> soloIf else .)
+    CLOSE_BRACE     reduce using rule 25 (if -> soloIf else .)
+
+
+state 38
+
+    (27) elseIf -> ELSEIF . OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (28) elseIf -> ELSEIF . OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf
+
+    OPEN_PARENTHESIS shift and go to state 70
+
+
+state 39
+
+    (29) else -> ELSE . OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_BRACE      shift and go to state 71
+
+
+state 40
+
+    (26) soloIf -> IF OPEN_PARENTHESIS . controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (30) controlArg -> . element clause element
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    controlArg                     shift and go to state 72
+    element                        shift and go to state 61
+
+state 41
+
+    (67) iniciarMap -> variable IGUAL NEW . MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+
+    MAP             shift and go to state 73
+
+
+state 42
+
+    (68) escribirMap -> variable IGUAL OPEN_BRACE . claveValor CLOSE_BRACE
+    (74) generarMap -> variable IGUAL OPEN_BRACE . tuplas CLOSE_BRACE
+    (69) claveValor -> . clave COLON valor
+    (70) claveValor -> . clave COLON valor COMMA claveValor
+    (75) tuplas -> . tupla
+    (76) tuplas -> . tupla COMMA tuplas
+    (71) clave -> . datatype
+    (77) tupla -> . OPEN_BRACKET datatype CLOSE_BRACKET SEMICOLON
+    (78) tupla -> . OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET SEMICOLON
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+
+    OPEN_BRACKET    shift and go to state 79
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+
+    claveValor                     shift and go to state 74
+    tuplas                         shift and go to state 75
+    clave                          shift and go to state 76
+    tupla                          shift and go to state 77
+    datatype                       shift and go to state 78
+
+state 43
+
+    (11) variable -> type NAME IGUAL . datatype SEMICOLON
+    (12) variable -> type NAME IGUAL . operations SEMICOLON
+    (62) array -> type NAME IGUAL . OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> type NAME IGUAL . NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> type NAME IGUAL . NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type NAME IGUAL . NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type NAME IGUAL . NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+    (34) operations -> . NUMBER operand NUMBER
+    (35) operations -> . NAME
+    (36) operations -> . NUMBER
+    (37) operations -> . NUMBER operand NAME operations
+    (38) operations -> . NAME operand NUMBER operations
+    (39) operations -> . NUMBER operand NAME
+    (40) operations -> . NAME operand NUMBER
+    (41) operations -> . NAME operand NAME operations
+
+    OPEN_BRACKET    shift and go to state 85
+    NEW             shift and go to state 86
+    NUMBER          shift and go to state 87
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+    NAME            shift and go to state 82
+
+    datatype                       shift and go to state 83
+    operations                     shift and go to state 84
+
+state 44
+
+    (102) element -> NAME .
+
+    $end            reduce using rule 102 (element -> NAME .)
+    CLOSE_BRACE     reduce using rule 102 (element -> NAME .)
+    IGUALIGUAL      reduce using rule 102 (element -> NAME .)
+    DIFERENTE       reduce using rule 102 (element -> NAME .)
+    MAYORQUE        reduce using rule 102 (element -> NAME .)
+    MAYORIGUALQUE   reduce using rule 102 (element -> NAME .)
+    MENORQUE        reduce using rule 102 (element -> NAME .)
+    MENORIGUALQUE   reduce using rule 102 (element -> NAME .)
+    CLOSE_PARENTHESIS reduce using rule 102 (element -> NAME .)
+    SEMICOLON       reduce using rule 102 (element -> NAME .)
+
+
+state 45
+
+    (13) variable -> NAME IGUAL datatype . SEMICOLON
+
+    SEMICOLON       shift and go to state 88
+
+
+state 46
+
+    (103) declaration -> NAME IGUAL element .
+
+    $end            reduce using rule 103 (declaration -> NAME IGUAL element .)
+    CLOSE_BRACE     reduce using rule 103 (declaration -> NAME IGUAL element .)
+
+
+state 47
+
+    (88) set -> NAME IGUAL NEW . SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> NAME IGUAL NEW . SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> NAME IGUAL NEW . SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    SET             shift and go to state 89
+
+
+state 48
+
+    (42) datatype -> NUMBER .
+    (101) element -> NUMBER .
+
+    SEMICOLON       reduce using rule 42 (datatype -> NUMBER .)
+    $end            reduce using rule 101 (element -> NUMBER .)
+    CLOSE_BRACE     reduce using rule 101 (element -> NUMBER .)
+
+
+state 49
+
+    (43) datatype -> STRING .
+    (100) element -> STRING .
+
+    SEMICOLON       reduce using rule 43 (datatype -> STRING .)
+    $end            reduce using rule 100 (element -> STRING .)
+    CLOSE_BRACE     reduce using rule 100 (element -> STRING .)
+
+
+state 50
+
+    (44) datatype -> CHAR .
+
+    SEMICOLON       reduce using rule 44 (datatype -> CHAR .)
+    COLON           reduce using rule 44 (datatype -> CHAR .)
+    CLOSE_BRACKET   reduce using rule 44 (datatype -> CHAR .)
+    COMMA           reduce using rule 44 (datatype -> CHAR .)
+    CLOSE_PARENTHESIS reduce using rule 44 (datatype -> CHAR .)
+    CLOSE_BRACE     reduce using rule 44 (datatype -> CHAR .)
+
+
+state 51
+
+    (91) methodsSet -> NAME POINT ADD . OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 90
+
+
+state 52
+
+    (92) methodsSet -> NAME POINT DELETE . OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 91
+
+
+state 53
+
+    (93) methodsSet -> NAME POINT CLEAR . OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> NAME POINT CLEAR . OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 92
+
+
+state 54
+
+    (80) mapFunctions -> NAME POINT GET . OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 93
+
+
+state 55
+
+    (81) mapFunctions -> NAME POINT HAS . OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 94
+
+
+state 56
+
+    (82) arrayFn -> NAME POINT POP . OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 95
+
+
+state 57
+
+    (83) arrayFn -> NAME POINT PUSH . OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 96
+
+
+state 58
+
+    (84) arrayFn -> NAME POINT UNSHIFT . OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 97
+
+
+state 59
+
+    (20) while -> WHILE OPEN_PARENTHESIS controlArg . CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    CLOSE_PARENTHESIS shift and go to state 98
+
+
+state 60
+
+    (21) while -> WHILE OPEN_PARENTHESIS bool . CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    CLOSE_PARENTHESIS shift and go to state 99
+
+
+state 61
+
+    (30) controlArg -> element . clause element
+    (54) clause -> . IGUALIGUAL
+    (55) clause -> . DIFERENTE
+    (56) clause -> . MAYORQUE
+    (57) clause -> . MAYORIGUALQUE
+    (58) clause -> . MENORQUE
+    (59) clause -> . MENORIGUALQUE
+
+    IGUALIGUAL      shift and go to state 101
+    DIFERENTE       shift and go to state 102
+    MAYORQUE        shift and go to state 103
+    MAYORIGUALQUE   shift and go to state 104
+    MENORQUE        shift and go to state 105
+    MENORIGUALQUE   shift and go to state 106
+
+    clause                         shift and go to state 100
+
+state 62
+
+    (49) bool -> TRUE .
+
+    CLOSE_PARENTHESIS reduce using rule 49 (bool -> TRUE .)
+
+
+state 63
+
+    (50) bool -> FALSE .
+
+    CLOSE_PARENTHESIS reduce using rule 50 (bool -> FALSE .)
+
+
+state 64
+
+    (100) element -> STRING .
+
+    IGUALIGUAL      reduce using rule 100 (element -> STRING .)
+    DIFERENTE       reduce using rule 100 (element -> STRING .)
+    MAYORQUE        reduce using rule 100 (element -> STRING .)
+    MAYORIGUALQUE   reduce using rule 100 (element -> STRING .)
+    MENORQUE        reduce using rule 100 (element -> STRING .)
+    MENORIGUALQUE   reduce using rule 100 (element -> STRING .)
+    CLOSE_PARENTHESIS reduce using rule 100 (element -> STRING .)
+    SEMICOLON       reduce using rule 100 (element -> STRING .)
+
+
+state 65
+
+    (101) element -> NUMBER .
+
+    IGUALIGUAL      reduce using rule 101 (element -> NUMBER .)
+    DIFERENTE       reduce using rule 101 (element -> NUMBER .)
+    MAYORQUE        reduce using rule 101 (element -> NUMBER .)
+    MAYORIGUALQUE   reduce using rule 101 (element -> NUMBER .)
+    MENORQUE        reduce using rule 101 (element -> NUMBER .)
+    MENORIGUALQUE   reduce using rule 101 (element -> NUMBER .)
+    CLOSE_PARENTHESIS reduce using rule 101 (element -> NUMBER .)
+    SEMICOLON       reduce using rule 101 (element -> NUMBER .)
+
+
+state 66
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization . SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    SEMICOLON       shift and go to state 107
+
+
+state 67
+
+    (32) inicialization -> type . NAME IGUAL NUMBER
+
+    NAME            shift and go to state 108
+
+
+state 68
+
+    (33) inicialization -> NAME . IGUAL NUMBER
+
+    IGUAL           shift and go to state 109
+
+
+state 69
+
+    (24) if -> soloIf elseIf else .
+
+    NAME            reduce using rule 24 (if -> soloIf elseIf else .)
+    CONST           reduce using rule 24 (if -> soloIf elseIf else .)
+    LET             reduce using rule 24 (if -> soloIf elseIf else .)
+    VAR             reduce using rule 24 (if -> soloIf elseIf else .)
+    WHILE           reduce using rule 24 (if -> soloIf elseIf else .)
+    FOR             reduce using rule 24 (if -> soloIf elseIf else .)
+    IF              reduce using rule 24 (if -> soloIf elseIf else .)
+    $end            reduce using rule 24 (if -> soloIf elseIf else .)
+    CLOSE_BRACE     reduce using rule 24 (if -> soloIf elseIf else .)
+
+
+state 70
+
+    (27) elseIf -> ELSEIF OPEN_PARENTHESIS . controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (28) elseIf -> ELSEIF OPEN_PARENTHESIS . controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf
+    (30) controlArg -> . element clause element
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    controlArg                     shift and go to state 110
+    element                        shift and go to state 61
+
+state 71
+
+    (29) else -> ELSE OPEN_BRACE . expression CLOSE_BRACE
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    expression                     shift and go to state 111
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 72
+
+    (26) soloIf -> IF OPEN_PARENTHESIS controlArg . CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    CLOSE_PARENTHESIS shift and go to state 112
+
+
+state 73
+
+    (67) iniciarMap -> variable IGUAL NEW MAP . OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 113
+
+
+state 74
+
+    (68) escribirMap -> variable IGUAL OPEN_BRACE claveValor . CLOSE_BRACE
+
+    CLOSE_BRACE     shift and go to state 114
+
+
+state 75
+
+    (74) generarMap -> variable IGUAL OPEN_BRACE tuplas . CLOSE_BRACE
+
+    CLOSE_BRACE     shift and go to state 115
+
+
+state 76
+
+    (69) claveValor -> clave . COLON valor
+    (70) claveValor -> clave . COLON valor COMMA claveValor
+
+    COLON           shift and go to state 116
+
+
+state 77
+
+    (75) tuplas -> tupla .
+    (76) tuplas -> tupla . COMMA tuplas
+
+    CLOSE_BRACE     reduce using rule 75 (tuplas -> tupla .)
+    COMMA           shift and go to state 117
+
+
+state 78
+
+    (71) clave -> datatype .
+
+    COLON           reduce using rule 71 (clave -> datatype .)
+    CLOSE_PARENTHESIS reduce using rule 71 (clave -> datatype .)
+
+
+state 79
+
+    (77) tupla -> OPEN_BRACKET . datatype CLOSE_BRACKET SEMICOLON
+    (78) tupla -> OPEN_BRACKET . datatype COMMA datatype CLOSE_BRACKET SEMICOLON
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+
+    datatype                       shift and go to state 118
+
+state 80
+
+    (42) datatype -> NUMBER .
+
+    COLON           reduce using rule 42 (datatype -> NUMBER .)
+    CLOSE_BRACKET   reduce using rule 42 (datatype -> NUMBER .)
+    COMMA           reduce using rule 42 (datatype -> NUMBER .)
+    CLOSE_PARENTHESIS reduce using rule 42 (datatype -> NUMBER .)
+    CLOSE_BRACE     reduce using rule 42 (datatype -> NUMBER .)
+    SEMICOLON       reduce using rule 42 (datatype -> NUMBER .)
+
+
+state 81
+
+    (43) datatype -> STRING .
+
+    COLON           reduce using rule 43 (datatype -> STRING .)
+    SEMICOLON       reduce using rule 43 (datatype -> STRING .)
+    CLOSE_BRACKET   reduce using rule 43 (datatype -> STRING .)
+    COMMA           reduce using rule 43 (datatype -> STRING .)
+    CLOSE_PARENTHESIS reduce using rule 43 (datatype -> STRING .)
+    CLOSE_BRACE     reduce using rule 43 (datatype -> STRING .)
+
+
+state 82
+
+    (35) operations -> NAME .
+    (38) operations -> NAME . operand NUMBER operations
+    (40) operations -> NAME . operand NUMBER
+    (41) operations -> NAME . operand NAME operations
+    (45) operand -> . SUMA
+    (46) operand -> . RESTA
+    (47) operand -> . MULTIPLICACION
+    (48) operand -> . DIVISION
+
+    SEMICOLON       reduce using rule 35 (operations -> NAME .)
+    CLOSE_PARENTHESIS reduce using rule 35 (operations -> NAME .)
+    SUMA            shift and go to state 120
+    RESTA           shift and go to state 121
+    MULTIPLICACION  shift and go to state 122
+    DIVISION        shift and go to state 123
+
+    operand                        shift and go to state 119
+
+state 83
+
+    (11) variable -> type NAME IGUAL datatype . SEMICOLON
+
+    SEMICOLON       shift and go to state 124
+
+
+state 84
+
+    (12) variable -> type NAME IGUAL operations . SEMICOLON
+
+    SEMICOLON       shift and go to state 125
+
+
+state 85
+
+    (62) array -> type NAME IGUAL OPEN_BRACKET . items CLOSE_BRACKET SEMICOLON
+    (94) items -> . numeros
+    (95) items -> . cadena
+    (96) numeros -> . NUMBER
+    (97) numeros -> . NUMBER COMMA numeros
+    (98) cadena -> . STRING
+    (99) cadena -> . STRING COMMA cadena
+
+    NUMBER          shift and go to state 129
+    STRING          shift and go to state 130
+
+    items                          shift and go to state 126
+    numeros                        shift and go to state 127
+    cadena                         shift and go to state 128
+
+state 86
+
+    (63) array -> type NAME IGUAL NEW . ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> type NAME IGUAL NEW . SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type NAME IGUAL NEW . SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type NAME IGUAL NEW . SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    ARRAY           shift and go to state 131
+    SET             shift and go to state 132
+
+
+state 87
+
+    (42) datatype -> NUMBER .
+    (34) operations -> NUMBER . operand NUMBER
+    (36) operations -> NUMBER .
+    (37) operations -> NUMBER . operand NAME operations
+    (39) operations -> NUMBER . operand NAME
+    (45) operand -> . SUMA
+    (46) operand -> . RESTA
+    (47) operand -> . MULTIPLICACION
+    (48) operand -> . DIVISION
+
+  ! reduce/reduce conflict for SEMICOLON resolved using rule 36 (operations -> NUMBER .)
+    SEMICOLON       reduce using rule 36 (operations -> NUMBER .)
+    SUMA            shift and go to state 120
+    RESTA           shift and go to state 121
+    MULTIPLICACION  shift and go to state 122
+    DIVISION        shift and go to state 123
+
+  ! SEMICOLON       [ reduce using rule 42 (datatype -> NUMBER .) ]
+
+    operand                        shift and go to state 133
+
+state 88
+
+    (13) variable -> NAME IGUAL datatype SEMICOLON .
+
+    IGUAL           reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    NAME            reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    CONST           reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    LET             reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    VAR             reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    WHILE           reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    FOR             reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    IF              reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    $end            reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 13 (variable -> NAME IGUAL datatype SEMICOLON .)
+
+
+state 89
+
+    (88) set -> NAME IGUAL NEW SET . OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> NAME IGUAL NEW SET . OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> NAME IGUAL NEW SET . OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 134
+
+
+state 90
+
+    (91) methodsSet -> NAME POINT ADD OPEN_PARENTHESIS . element CLOSE_PARENTHESIS SEMICOLON
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    element                        shift and go to state 135
+
+state 91
+
+    (92) methodsSet -> NAME POINT DELETE OPEN_PARENTHESIS . element CLOSE_PARENTHESIS SEMICOLON
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    element                        shift and go to state 136
+
+state 92
+
+    (93) methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS . CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 137
+
+
+state 93
+
+    (80) mapFunctions -> NAME POINT GET OPEN_PARENTHESIS . clave CLOSE_PARENTHESIS SEMICOLON
+    (71) clave -> . datatype
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+
+    clave                          shift and go to state 138
+    datatype                       shift and go to state 78
+
+state 94
+
+    (81) mapFunctions -> NAME POINT HAS OPEN_PARENTHESIS . clave CLOSE_PARENTHESIS SEMICOLON
+    (71) clave -> . datatype
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+
+    clave                          shift and go to state 139
+    datatype                       shift and go to state 78
+
+state 95
+
+    (82) arrayFn -> NAME POINT POP OPEN_PARENTHESIS . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 140
+
+
+state 96
+
+    (83) arrayFn -> NAME POINT PUSH OPEN_PARENTHESIS . element CLOSE_PARENTHESIS SEMICOLON
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    element                        shift and go to state 141
+
+state 97
+
+    (84) arrayFn -> NAME POINT UNSHIFT OPEN_PARENTHESIS . element CLOSE_PARENTHESIS SEMICOLON
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    element                        shift and go to state 142
+
+state 98
+
+    (20) while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS . OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_BRACE      shift and go to state 143
+
+
+state 99
+
+    (21) while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS . OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_BRACE      shift and go to state 144
+
+
+state 100
+
+    (30) controlArg -> element clause . element
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    element                        shift and go to state 145
+
+state 101
+
+    (54) clause -> IGUALIGUAL .
+
+    STRING          reduce using rule 54 (clause -> IGUALIGUAL .)
+    NUMBER          reduce using rule 54 (clause -> IGUALIGUAL .)
+    NAME            reduce using rule 54 (clause -> IGUALIGUAL .)
+
+
+state 102
+
+    (55) clause -> DIFERENTE .
+
+    STRING          reduce using rule 55 (clause -> DIFERENTE .)
+    NUMBER          reduce using rule 55 (clause -> DIFERENTE .)
+    NAME            reduce using rule 55 (clause -> DIFERENTE .)
+
+
+state 103
+
+    (56) clause -> MAYORQUE .
+
+    STRING          reduce using rule 56 (clause -> MAYORQUE .)
+    NUMBER          reduce using rule 56 (clause -> MAYORQUE .)
+    NAME            reduce using rule 56 (clause -> MAYORQUE .)
+
+
+state 104
+
+    (57) clause -> MAYORIGUALQUE .
+
+    STRING          reduce using rule 57 (clause -> MAYORIGUALQUE .)
+    NUMBER          reduce using rule 57 (clause -> MAYORIGUALQUE .)
+    NAME            reduce using rule 57 (clause -> MAYORIGUALQUE .)
+
+
+state 105
+
+    (58) clause -> MENORQUE .
+
+    STRING          reduce using rule 58 (clause -> MENORQUE .)
+    NUMBER          reduce using rule 58 (clause -> MENORQUE .)
+    NAME            reduce using rule 58 (clause -> MENORQUE .)
+
+
+state 106
+
+    (59) clause -> MENORIGUALQUE .
+
+    STRING          reduce using rule 59 (clause -> MENORIGUALQUE .)
+    NUMBER          reduce using rule 59 (clause -> MENORIGUALQUE .)
+    NAME            reduce using rule 59 (clause -> MENORIGUALQUE .)
+
+
+state 107
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON . controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (30) controlArg -> . element clause element
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    controlArg                     shift and go to state 146
+    element                        shift and go to state 61
+
+state 108
+
+    (32) inicialization -> type NAME . IGUAL NUMBER
+
+    IGUAL           shift and go to state 147
+
+
+state 109
+
+    (33) inicialization -> NAME IGUAL . NUMBER
+
+    NUMBER          shift and go to state 148
+
+
+state 110
+
+    (27) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg . CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (28) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg . CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf
+
+    CLOSE_PARENTHESIS shift and go to state 149
+
+
+state 111
+
+    (29) else -> ELSE OPEN_BRACE expression . CLOSE_BRACE
+
+    CLOSE_BRACE     shift and go to state 150
+
+
+state 112
+
+    (26) soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS . OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_BRACE      shift and go to state 151
+
+
+state 113
+
+    (67) iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 152
+
+
+state 114
+
+    (68) escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .
+
+    NAME            reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    CONST           reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    LET             reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    VAR             reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    WHILE           reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    FOR             reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    IF              reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    $end            reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+    COMMA           reduce using rule 68 (escribirMap -> variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE .)
+
+
+state 115
+
+    (74) generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .
+
+    NAME            reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    CONST           reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    LET             reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    VAR             reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    WHILE           reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    FOR             reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    IF              reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    $end            reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+    COMMA           reduce using rule 74 (generarMap -> variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE .)
+
+
+state 116
+
+    (69) claveValor -> clave COLON . valor
+    (70) claveValor -> clave COLON . valor COMMA claveValor
+    (72) valor -> . datatype
+    (73) valor -> . dataStruct
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+    NAME            shift and go to state 157
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+
+    valor                          shift and go to state 153
+    datatype                       shift and go to state 154
+    dataStruct                     shift and go to state 155
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    type                           shift and go to state 156
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    variable                       shift and go to state 158
+
+state 117
+
+    (76) tuplas -> tupla COMMA . tuplas
+    (75) tuplas -> . tupla
+    (76) tuplas -> . tupla COMMA tuplas
+    (77) tupla -> . OPEN_BRACKET datatype CLOSE_BRACKET SEMICOLON
+    (78) tupla -> . OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET SEMICOLON
+
+    OPEN_BRACKET    shift and go to state 79
+
+    tupla                          shift and go to state 77
+    tuplas                         shift and go to state 159
+
+state 118
+
+    (77) tupla -> OPEN_BRACKET datatype . CLOSE_BRACKET SEMICOLON
+    (78) tupla -> OPEN_BRACKET datatype . COMMA datatype CLOSE_BRACKET SEMICOLON
+
+    CLOSE_BRACKET   shift and go to state 160
+    COMMA           shift and go to state 161
+
+
+state 119
+
+    (38) operations -> NAME operand . NUMBER operations
+    (40) operations -> NAME operand . NUMBER
+    (41) operations -> NAME operand . NAME operations
+
+    NUMBER          shift and go to state 163
+    NAME            shift and go to state 162
+
+
+state 120
+
+    (45) operand -> SUMA .
+
+    NUMBER          reduce using rule 45 (operand -> SUMA .)
+    NAME            reduce using rule 45 (operand -> SUMA .)
+
+
+state 121
+
+    (46) operand -> RESTA .
+
+    NUMBER          reduce using rule 46 (operand -> RESTA .)
+    NAME            reduce using rule 46 (operand -> RESTA .)
+
+
+state 122
+
+    (47) operand -> MULTIPLICACION .
+
+    NUMBER          reduce using rule 47 (operand -> MULTIPLICACION .)
+    NAME            reduce using rule 47 (operand -> MULTIPLICACION .)
+
+
+state 123
+
+    (48) operand -> DIVISION .
+
+    NUMBER          reduce using rule 48 (operand -> DIVISION .)
+    NAME            reduce using rule 48 (operand -> DIVISION .)
+
+
+state 124
+
+    (11) variable -> type NAME IGUAL datatype SEMICOLON .
+
+    IGUAL           reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    NAME            reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    CONST           reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    LET             reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    VAR             reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    WHILE           reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    FOR             reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    IF              reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    $end            reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 11 (variable -> type NAME IGUAL datatype SEMICOLON .)
+
+
+state 125
+
+    (12) variable -> type NAME IGUAL operations SEMICOLON .
+
+    IGUAL           reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    NAME            reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    CONST           reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    LET             reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    VAR             reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    WHILE           reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    FOR             reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    IF              reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    $end            reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 12 (variable -> type NAME IGUAL operations SEMICOLON .)
+
+
+state 126
+
+    (62) array -> type NAME IGUAL OPEN_BRACKET items . CLOSE_BRACKET SEMICOLON
+
+    CLOSE_BRACKET   shift and go to state 164
+
+
+state 127
+
+    (94) items -> numeros .
+
+    CLOSE_BRACKET   reduce using rule 94 (items -> numeros .)
+    CLOSE_PARENTHESIS reduce using rule 94 (items -> numeros .)
+
+
+state 128
+
+    (95) items -> cadena .
+
+    CLOSE_BRACKET   reduce using rule 95 (items -> cadena .)
+    CLOSE_PARENTHESIS reduce using rule 95 (items -> cadena .)
+
+
+state 129
+
+    (96) numeros -> NUMBER .
+    (97) numeros -> NUMBER . COMMA numeros
+
+    CLOSE_BRACKET   reduce using rule 96 (numeros -> NUMBER .)
+    CLOSE_PARENTHESIS reduce using rule 96 (numeros -> NUMBER .)
+    COMMA           shift and go to state 165
+
+
+state 130
+
+    (98) cadena -> STRING .
+    (99) cadena -> STRING . COMMA cadena
+
+    CLOSE_BRACKET   reduce using rule 98 (cadena -> STRING .)
+    CLOSE_PARENTHESIS reduce using rule 98 (cadena -> STRING .)
+    COMMA           shift and go to state 166
+
+
+state 131
+
+    (63) array -> type NAME IGUAL NEW ARRAY . OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 167
+
+
+state 132
+
+    (85) set -> type NAME IGUAL NEW SET . OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type NAME IGUAL NEW SET . OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type NAME IGUAL NEW SET . OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+
+    OPEN_PARENTHESIS shift and go to state 168
+
+
+state 133
+
+    (34) operations -> NUMBER operand . NUMBER
+    (37) operations -> NUMBER operand . NAME operations
+    (39) operations -> NUMBER operand . NAME
+
+    NUMBER          shift and go to state 169
+    NAME            shift and go to state 170
+
+
+state 134
+
+    (88) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS . CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS . OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS . element CLOSE_PARENTHESIS SEMICOLON
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    CLOSE_PARENTHESIS shift and go to state 171
+    OPEN_BRACKET    shift and go to state 172
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    element                        shift and go to state 173
+
+state 135
+
+    (91) methodsSet -> NAME POINT ADD OPEN_PARENTHESIS element . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 174
+
+
+state 136
+
+    (92) methodsSet -> NAME POINT DELETE OPEN_PARENTHESIS element . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 175
+
+
+state 137
+
+    (93) methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS . SEMICOLON
+    (79) mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 176
+
+
+state 138
+
+    (80) mapFunctions -> NAME POINT GET OPEN_PARENTHESIS clave . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 177
+
+
+state 139
+
+    (81) mapFunctions -> NAME POINT HAS OPEN_PARENTHESIS clave . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 178
+
+
+state 140
+
+    (82) arrayFn -> NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 179
+
+
+state 141
+
+    (83) arrayFn -> NAME POINT PUSH OPEN_PARENTHESIS element . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 180
+
+
+state 142
+
+    (84) arrayFn -> NAME POINT UNSHIFT OPEN_PARENTHESIS element . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 181
+
+
+state 143
+
+    (20) while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE . expression CLOSE_BRACE
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    expression                     shift and go to state 182
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 144
+
+    (21) while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE . expression CLOSE_BRACE
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    expression                     shift and go to state 183
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 145
+
+    (30) controlArg -> element clause element .
+
+    CLOSE_PARENTHESIS reduce using rule 30 (controlArg -> element clause element .)
+    SEMICOLON       reduce using rule 30 (controlArg -> element clause element .)
+
+
+state 146
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg . SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    SEMICOLON       shift and go to state 184
+
+
+state 147
+
+    (32) inicialization -> type NAME IGUAL . NUMBER
+
+    NUMBER          shift and go to state 185
+
+
+state 148
+
+    (33) inicialization -> NAME IGUAL NUMBER .
+
+    SEMICOLON       reduce using rule 33 (inicialization -> NAME IGUAL NUMBER .)
+
+
+state 149
+
+    (27) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS . OPEN_BRACE expression CLOSE_BRACE
+    (28) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS . OPEN_BRACE expression CLOSE_BRACE soloIf
+
+    OPEN_BRACE      shift and go to state 186
+
+
+state 150
+
+    (29) else -> ELSE OPEN_BRACE expression CLOSE_BRACE .
+
+    NAME            reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    CONST           reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    LET             reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    VAR             reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    WHILE           reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    FOR             reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    IF              reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    $end            reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 29 (else -> ELSE OPEN_BRACE expression CLOSE_BRACE .)
+
+
+state 151
+
+    (26) soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE . expression CLOSE_BRACE
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    expression                     shift and go to state 187
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 152
+
+    (67) iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 188
+
+
+state 153
+
+    (69) claveValor -> clave COLON valor .
+    (70) claveValor -> clave COLON valor . COMMA claveValor
+
+    CLOSE_BRACE     reduce using rule 69 (claveValor -> clave COLON valor .)
+    COMMA           shift and go to state 189
+
+
+state 154
+
+    (72) valor -> datatype .
+
+    COMMA           reduce using rule 72 (valor -> datatype .)
+    CLOSE_BRACE     reduce using rule 72 (valor -> datatype .)
+
+
+state 155
+
+    (73) valor -> dataStruct .
+
+    COMMA           reduce using rule 73 (valor -> dataStruct .)
+    CLOSE_BRACE     reduce using rule 73 (valor -> dataStruct .)
+
+
+state 156
+
+    (62) array -> type . NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> type . NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> type . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (11) variable -> type . NAME IGUAL datatype SEMICOLON
+    (12) variable -> type . NAME IGUAL operations SEMICOLON
+
+    NAME            shift and go to state 190
+
+
+state 157
+
+    (88) set -> NAME . IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> NAME . IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> NAME . IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (13) variable -> NAME . IGUAL datatype SEMICOLON
+
+    IGUAL           shift and go to state 191
+
+
+state 158
+
+    (67) iniciarMap -> variable . IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> variable . IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> variable . IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+
+    IGUAL           shift and go to state 28
+
+
+state 159
+
+    (76) tuplas -> tupla COMMA tuplas .
+
+    CLOSE_BRACE     reduce using rule 76 (tuplas -> tupla COMMA tuplas .)
+
+
+state 160
+
+    (77) tupla -> OPEN_BRACKET datatype CLOSE_BRACKET . SEMICOLON
+
+    SEMICOLON       shift and go to state 192
+
+
+state 161
+
+    (78) tupla -> OPEN_BRACKET datatype COMMA . datatype CLOSE_BRACKET SEMICOLON
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+
+    datatype                       shift and go to state 193
+
+state 162
+
+    (41) operations -> NAME operand NAME . operations
+    (34) operations -> . NUMBER operand NUMBER
+    (35) operations -> . NAME
+    (36) operations -> . NUMBER
+    (37) operations -> . NUMBER operand NAME operations
+    (38) operations -> . NAME operand NUMBER operations
+    (39) operations -> . NUMBER operand NAME
+    (40) operations -> . NAME operand NUMBER
+    (41) operations -> . NAME operand NAME operations
+
+    NUMBER          shift and go to state 195
+    NAME            shift and go to state 82
+
+    operations                     shift and go to state 194
+
+state 163
+
+    (38) operations -> NAME operand NUMBER . operations
+    (40) operations -> NAME operand NUMBER .
+    (34) operations -> . NUMBER operand NUMBER
+    (35) operations -> . NAME
+    (36) operations -> . NUMBER
+    (37) operations -> . NUMBER operand NAME operations
+    (38) operations -> . NAME operand NUMBER operations
+    (39) operations -> . NUMBER operand NAME
+    (40) operations -> . NAME operand NUMBER
+    (41) operations -> . NAME operand NAME operations
+
+    SEMICOLON       reduce using rule 40 (operations -> NAME operand NUMBER .)
+    CLOSE_PARENTHESIS reduce using rule 40 (operations -> NAME operand NUMBER .)
+    NUMBER          shift and go to state 195
+    NAME            shift and go to state 82
+
+    operations                     shift and go to state 196
+
+state 164
+
+    (62) array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET . SEMICOLON
+
+    SEMICOLON       shift and go to state 197
+
+
+state 165
+
+    (97) numeros -> NUMBER COMMA . numeros
+    (96) numeros -> . NUMBER
+    (97) numeros -> . NUMBER COMMA numeros
+
+    NUMBER          shift and go to state 129
+
+    numeros                        shift and go to state 198
+
+state 166
+
+    (99) cadena -> STRING COMMA . cadena
+    (98) cadena -> . STRING
+    (99) cadena -> . STRING COMMA cadena
+
+    STRING          shift and go to state 130
+
+    cadena                         shift and go to state 199
+
+state 167
+
+    (63) array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS . items CLOSE_PARENTHESIS SEMICOLON
+    (94) items -> . numeros
+    (95) items -> . cadena
+    (96) numeros -> . NUMBER
+    (97) numeros -> . NUMBER COMMA numeros
+    (98) cadena -> . STRING
+    (99) cadena -> . STRING COMMA cadena
+
+    NUMBER          shift and go to state 129
+    STRING          shift and go to state 130
+
+    items                          shift and go to state 200
+    numeros                        shift and go to state 127
+    cadena                         shift and go to state 128
+
+state 168
+
+    (85) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS . CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS . OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS . element CLOSE_PARENTHESIS SEMICOLON
+    (100) element -> . STRING
+    (101) element -> . NUMBER
+    (102) element -> . NAME
+
+    CLOSE_PARENTHESIS shift and go to state 201
+    OPEN_BRACKET    shift and go to state 202
+    STRING          shift and go to state 64
+    NUMBER          shift and go to state 65
+    NAME            shift and go to state 44
+
+    element                        shift and go to state 203
+
+state 169
+
+    (34) operations -> NUMBER operand NUMBER .
+
+    SEMICOLON       reduce using rule 34 (operations -> NUMBER operand NUMBER .)
+    CLOSE_PARENTHESIS reduce using rule 34 (operations -> NUMBER operand NUMBER .)
+
+
+state 170
+
+    (37) operations -> NUMBER operand NAME . operations
+    (39) operations -> NUMBER operand NAME .
+    (34) operations -> . NUMBER operand NUMBER
+    (35) operations -> . NAME
+    (36) operations -> . NUMBER
+    (37) operations -> . NUMBER operand NAME operations
+    (38) operations -> . NAME operand NUMBER operations
+    (39) operations -> . NUMBER operand NAME
+    (40) operations -> . NAME operand NUMBER
+    (41) operations -> . NAME operand NAME operations
+
+    SEMICOLON       reduce using rule 39 (operations -> NUMBER operand NAME .)
+    CLOSE_PARENTHESIS reduce using rule 39 (operations -> NUMBER operand NAME .)
+    NUMBER          shift and go to state 195
+    NAME            shift and go to state 82
+
+    operations                     shift and go to state 204
+
+state 171
+
+    (88) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 205
+
+
+state 172
+
+    (89) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET . items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (94) items -> . numeros
+    (95) items -> . cadena
+    (96) numeros -> . NUMBER
+    (97) numeros -> . NUMBER COMMA numeros
+    (98) cadena -> . STRING
+    (99) cadena -> . STRING COMMA cadena
+
+    NUMBER          shift and go to state 129
+    STRING          shift and go to state 130
+
+    items                          shift and go to state 206
+    numeros                        shift and go to state 127
+    cadena                         shift and go to state 128
+
+state 173
+
+    (90) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 207
+
+
+state 174
+
+    (91) methodsSet -> NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 208
+
+
+state 175
+
+    (92) methodsSet -> NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 209
+
+
+state 176
+
+    (93) methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .
+    (79) mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .
+
+  ! reduce/reduce conflict for $end resolved using rule 79 (mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+  ! reduce/reduce conflict for CLOSE_BRACE resolved using rule 79 (mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 79 (mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 79 (mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+
+  ! $end            [ reduce using rule 93 (methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .) ]
+  ! CLOSE_BRACE     [ reduce using rule 93 (methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .) ]
+
+
+state 177
+
+    (80) mapFunctions -> NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 210
+
+
+state 178
+
+    (81) mapFunctions -> NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 211
+
+
+state 179
+
+    (82) arrayFn -> NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .
+
+    $end            reduce using rule 82 (arrayFn -> NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 82 (arrayFn -> NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 180
+
+    (83) arrayFn -> NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 212
+
+
+state 181
+
+    (84) arrayFn -> NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 213
+
+
+state 182
+
+    (20) while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression . CLOSE_BRACE
+
+    CLOSE_BRACE     shift and go to state 214
+
+
+state 183
+
+    (21) while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression . CLOSE_BRACE
+
+    CLOSE_BRACE     shift and go to state 215
+
+
+state 184
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON . operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (34) operations -> . NUMBER operand NUMBER
+    (35) operations -> . NAME
+    (36) operations -> . NUMBER
+    (37) operations -> . NUMBER operand NAME operations
+    (38) operations -> . NAME operand NUMBER operations
+    (39) operations -> . NUMBER operand NAME
+    (40) operations -> . NAME operand NUMBER
+    (41) operations -> . NAME operand NAME operations
+
+    NUMBER          shift and go to state 195
+    NAME            shift and go to state 82
+
+    operations                     shift and go to state 216
+
+state 185
+
+    (32) inicialization -> type NAME IGUAL NUMBER .
+
+    SEMICOLON       reduce using rule 32 (inicialization -> type NAME IGUAL NUMBER .)
+
+
+state 186
+
+    (27) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE . expression CLOSE_BRACE
+    (28) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE . expression CLOSE_BRACE soloIf
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    expression                     shift and go to state 217
+    soloIf                         shift and go to state 25
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+
+state 187
+
+    (26) soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression . CLOSE_BRACE
+
+    CLOSE_BRACE     shift and go to state 218
+
+
+state 188
+
+    (67) iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 67 (iniciarMap -> variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 189
+
+    (70) claveValor -> clave COLON valor COMMA . claveValor
+    (69) claveValor -> . clave COLON valor
+    (70) claveValor -> . clave COLON valor COMMA claveValor
+    (71) clave -> . datatype
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+
+    clave                          shift and go to state 76
+    claveValor                     shift and go to state 219
+    datatype                       shift and go to state 78
+
+state 190
+
+    (62) array -> type NAME . IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> type NAME . IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> type NAME . IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type NAME . IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type NAME . IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (11) variable -> type NAME . IGUAL datatype SEMICOLON
+    (12) variable -> type NAME . IGUAL operations SEMICOLON
+
+    IGUAL           shift and go to state 220
+
+
+state 191
+
+    (88) set -> NAME IGUAL . NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> NAME IGUAL . NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> NAME IGUAL . NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (13) variable -> NAME IGUAL . datatype SEMICOLON
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+
+    NEW             shift and go to state 47
+    NUMBER          shift and go to state 80
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+
+    datatype                       shift and go to state 45
+
+state 192
+
+    (77) tupla -> OPEN_BRACKET datatype CLOSE_BRACKET SEMICOLON .
+
+    COMMA           reduce using rule 77 (tupla -> OPEN_BRACKET datatype CLOSE_BRACKET SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 77 (tupla -> OPEN_BRACKET datatype CLOSE_BRACKET SEMICOLON .)
+
+
+state 193
+
+    (78) tupla -> OPEN_BRACKET datatype COMMA datatype . CLOSE_BRACKET SEMICOLON
+
+    CLOSE_BRACKET   shift and go to state 221
+
+
+state 194
+
+    (41) operations -> NAME operand NAME operations .
+
+    SEMICOLON       reduce using rule 41 (operations -> NAME operand NAME operations .)
+    CLOSE_PARENTHESIS reduce using rule 41 (operations -> NAME operand NAME operations .)
+
+
+state 195
+
+    (34) operations -> NUMBER . operand NUMBER
+    (36) operations -> NUMBER .
+    (37) operations -> NUMBER . operand NAME operations
+    (39) operations -> NUMBER . operand NAME
+    (45) operand -> . SUMA
+    (46) operand -> . RESTA
+    (47) operand -> . MULTIPLICACION
+    (48) operand -> . DIVISION
+
+    SEMICOLON       reduce using rule 36 (operations -> NUMBER .)
+    CLOSE_PARENTHESIS reduce using rule 36 (operations -> NUMBER .)
+    SUMA            shift and go to state 120
+    RESTA           shift and go to state 121
+    MULTIPLICACION  shift and go to state 122
+    DIVISION        shift and go to state 123
+
+    operand                        shift and go to state 133
+
+state 196
+
+    (38) operations -> NAME operand NUMBER operations .
+
+    SEMICOLON       reduce using rule 38 (operations -> NAME operand NUMBER operations .)
+    CLOSE_PARENTHESIS reduce using rule 38 (operations -> NAME operand NUMBER operations .)
+
+
+state 197
+
+    (62) array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .
+
+    NAME            reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    CONST           reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    LET             reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    VAR             reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    WHILE           reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    FOR             reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    IF              reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    $end            reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+    COMMA           reduce using rule 62 (array -> type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON .)
+
+
+state 198
+
+    (97) numeros -> NUMBER COMMA numeros .
+
+    CLOSE_BRACKET   reduce using rule 97 (numeros -> NUMBER COMMA numeros .)
+    CLOSE_PARENTHESIS reduce using rule 97 (numeros -> NUMBER COMMA numeros .)
+
+
+state 199
+
+    (99) cadena -> STRING COMMA cadena .
+
+    CLOSE_BRACKET   reduce using rule 99 (cadena -> STRING COMMA cadena .)
+    CLOSE_PARENTHESIS reduce using rule 99 (cadena -> STRING COMMA cadena .)
+
+
+state 200
+
+    (63) array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 222
+
+
+state 201
+
+    (85) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 223
+
+
+state 202
+
+    (86) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET . items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (94) items -> . numeros
+    (95) items -> . cadena
+    (96) numeros -> . NUMBER
+    (97) numeros -> . NUMBER COMMA numeros
+    (98) cadena -> . STRING
+    (99) cadena -> . STRING COMMA cadena
+
+    NUMBER          shift and go to state 129
+    STRING          shift and go to state 130
+
+    items                          shift and go to state 224
+    numeros                        shift and go to state 127
+    cadena                         shift and go to state 128
+
+state 203
+
+    (87) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 225
+
+
+state 204
+
+    (37) operations -> NUMBER operand NAME operations .
+
+    SEMICOLON       reduce using rule 37 (operations -> NUMBER operand NAME operations .)
+    CLOSE_PARENTHESIS reduce using rule 37 (operations -> NUMBER operand NAME operations .)
+
+
+state 205
+
+    (88) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 88 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 206
+
+    (89) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items . CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_BRACKET   shift and go to state 226
+
+
+state 207
+
+    (90) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 227
+
+
+state 208
+
+    (91) methodsSet -> NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .
+
+    $end            reduce using rule 91 (methodsSet -> NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 91 (methodsSet -> NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 209
+
+    (92) methodsSet -> NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .
+
+    $end            reduce using rule 92 (methodsSet -> NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 92 (methodsSet -> NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 210
+
+    (80) mapFunctions -> NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON .
+
+    $end            reduce using rule 80 (mapFunctions -> NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 80 (mapFunctions -> NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 211
+
+    (81) mapFunctions -> NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON .
+
+    $end            reduce using rule 81 (mapFunctions -> NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 81 (mapFunctions -> NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 212
+
+    (83) arrayFn -> NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .
+
+    $end            reduce using rule 83 (arrayFn -> NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 83 (arrayFn -> NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 213
+
+    (84) arrayFn -> NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .
+
+    $end            reduce using rule 84 (arrayFn -> NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 84 (arrayFn -> NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 214
+
+    (20) while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .
+
+    NAME            reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CONST           reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    LET             reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    VAR             reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    WHILE           reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    FOR             reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    IF              reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    $end            reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 20 (while -> WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+
+
+state 215
+
+    (21) while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .
+
+    NAME            reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CONST           reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    LET             reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    VAR             reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    WHILE           reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    FOR             reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    IF              reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    $end            reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 21 (while -> WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+
+
+state 216
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations . CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    CLOSE_PARENTHESIS shift and go to state 228
+
+
+state 217
+
+    (27) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression . CLOSE_BRACE
+    (28) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression . CLOSE_BRACE soloIf
+
+    CLOSE_BRACE     shift and go to state 229
+
+
+state 218
+
+    (26) soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .
+
+    ELSEIF          reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    ELSE            reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    NAME            reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CONST           reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    LET             reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    VAR             reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    WHILE           reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    FOR             reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    IF              reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    $end            reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 26 (soloIf -> IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+
+
+state 219
+
+    (70) claveValor -> clave COLON valor COMMA claveValor .
+
+    CLOSE_BRACE     reduce using rule 70 (claveValor -> clave COLON valor COMMA claveValor .)
+
+
+state 220
+
+    (62) array -> type NAME IGUAL . OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> type NAME IGUAL . NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> type NAME IGUAL . NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> type NAME IGUAL . NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> type NAME IGUAL . NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (11) variable -> type NAME IGUAL . datatype SEMICOLON
+    (12) variable -> type NAME IGUAL . operations SEMICOLON
+    (42) datatype -> . NUMBER
+    (43) datatype -> . STRING
+    (44) datatype -> . CHAR
+    (34) operations -> . NUMBER operand NUMBER
+    (35) operations -> . NAME
+    (36) operations -> . NUMBER
+    (37) operations -> . NUMBER operand NAME operations
+    (38) operations -> . NAME operand NUMBER operations
+    (39) operations -> . NUMBER operand NAME
+    (40) operations -> . NAME operand NUMBER
+    (41) operations -> . NAME operand NAME operations
+
+    OPEN_BRACKET    shift and go to state 85
+    NEW             shift and go to state 86
+    NUMBER          shift and go to state 87
+    STRING          shift and go to state 81
+    CHAR            shift and go to state 50
+    NAME            shift and go to state 82
+
+    datatype                       shift and go to state 83
+    operations                     shift and go to state 84
+
+state 221
+
+    (78) tupla -> OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET . SEMICOLON
+
+    SEMICOLON       shift and go to state 230
+
+
+state 222
+
+    (63) array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 231
+
+
+state 223
+
+    (85) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 85 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 224
+
+    (86) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items . CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_BRACKET   shift and go to state 232
+
+
+state 225
+
+    (87) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 233
+
+
+state 226
+
+    (89) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 234
+
+
+state 227
+
+    (90) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 90 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 228
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS . OPEN_BRACE expression CLOSE_BRACE
+
+    OPEN_BRACE      shift and go to state 235
+
+
+state 229
+
+    (27) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .
+    (28) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE . soloIf
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+  ! shift/reduce conflict for IF resolved as shift
+    ELSE            reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    NAME            reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CONST           reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    LET             reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    VAR             reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    WHILE           reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    FOR             reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    $end            reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    IF              shift and go to state 26
+
+  ! IF              [ reduce using rule 27 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .) ]
+
+    soloIf                         shift and go to state 236
+
+state 230
+
+    (78) tupla -> OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET SEMICOLON .
+
+    COMMA           reduce using rule 78 (tupla -> OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 78 (tupla -> OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET SEMICOLON .)
+
+
+state 231
+
+    (63) array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 63 (array -> type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 232
+
+    (86) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET . CLOSE_PARENTHESIS SEMICOLON
+
+    CLOSE_PARENTHESIS shift and go to state 237
+
+
+state 233
+
+    (87) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 87 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 234
+
+    (89) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 238
+
+
+state 235
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE . expression CLOSE_BRACE
+    (1) expression -> . variable
+    (2) expression -> . variable expression
+    (3) expression -> . dataStruct
+    (4) expression -> . dataStruct expression
+    (5) expression -> . controlStruct
+    (6) expression -> . controlStruct expression
+    (7) expression -> . methodsSet
+    (8) expression -> . mapFunctions
+    (9) expression -> . arrayFn
+    (10) expression -> . declaration
+    (11) variable -> . type NAME IGUAL datatype SEMICOLON
+    (12) variable -> . type NAME IGUAL operations SEMICOLON
+    (13) variable -> . NAME IGUAL datatype SEMICOLON
+    (17) dataStruct -> . array
+    (18) dataStruct -> . set
+    (19) dataStruct -> . map
+    (14) controlStruct -> . while
+    (15) controlStruct -> . for
+    (16) controlStruct -> . if
+    (91) methodsSet -> . NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (92) methodsSet -> . NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (93) methodsSet -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (79) mapFunctions -> . NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (80) mapFunctions -> . NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (81) mapFunctions -> . NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
+    (82) arrayFn -> . NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (83) arrayFn -> . NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (84) arrayFn -> . NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (103) declaration -> . NAME IGUAL element
+    (51) type -> . CONST
+    (52) type -> . LET
+    (53) type -> . VAR
+    (62) array -> . type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    (63) array -> . type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON
+    (85) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (86) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (87) set -> . type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (88) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (89) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    (90) set -> . NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    (64) map -> . iniciarMap
+    (65) map -> . escribirMap
+    (66) map -> . generarMap
+    (20) while -> . WHILE OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (21) while -> . WHILE OPEN_PARENTHESIS bool CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (31) for -> . FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    (22) if -> . soloIf
+    (23) if -> . soloIf elseIf
+    (24) if -> . soloIf elseIf else
+    (25) if -> . soloIf else
+    (67) iniciarMap -> . variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    (68) escribirMap -> . variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE
+    (74) generarMap -> . variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE
+    (26) soloIf -> . IF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+
+    NAME            shift and go to state 10
+    CONST           shift and go to state 17
+    LET             shift and go to state 18
+    VAR             shift and go to state 19
+    WHILE           shift and go to state 23
+    FOR             shift and go to state 24
+    IF              shift and go to state 26
+
+    expression                     shift and go to state 239
+    variable                       shift and go to state 2
+    dataStruct                     shift and go to state 3
+    controlStruct                  shift and go to state 4
+    methodsSet                     shift and go to state 5
+    mapFunctions                   shift and go to state 6
+    arrayFn                        shift and go to state 7
+    declaration                    shift and go to state 8
+    type                           shift and go to state 9
+    array                          shift and go to state 11
+    set                            shift and go to state 12
+    map                            shift and go to state 13
+    while                          shift and go to state 14
+    for                            shift and go to state 15
+    if                             shift and go to state 16
+    iniciarMap                     shift and go to state 20
+    escribirMap                    shift and go to state 21
+    generarMap                     shift and go to state 22
+    soloIf                         shift and go to state 25
+
+state 236
+
+    (28) elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .
+
+    ELSE            reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    NAME            reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    CONST           reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    LET             reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    VAR             reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    WHILE           reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    FOR             reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    IF              reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    $end            reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+    CLOSE_BRACE     reduce using rule 28 (elseIf -> ELSEIF OPEN_PARENTHESIS controlArg CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE soloIf .)
+
+
+state 237
+
+    (86) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS . SEMICOLON
+
+    SEMICOLON       shift and go to state 240
+
+
+state 238
+
+    (89) set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 89 (set -> NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 239
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression . CLOSE_BRACE
+
+    CLOSE_BRACE     shift and go to state 241
+
+
+state 240
+
+    (86) set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .
+
+    NAME            reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    CONST           reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    LET             reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    VAR             reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    WHILE           reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    FOR             reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    IF              reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    $end            reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    CLOSE_BRACE     reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+    COMMA           reduce using rule 86 (set -> type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON .)
+
+
+state 241
+
+    (31) for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .
+
+    NAME            reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CONST           reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    LET             reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    VAR             reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    WHILE           reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    FOR             reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    IF              reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    $end            reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+    CLOSE_BRACE     reduce using rule 31 (for -> FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for IF in state 229 resolved as shift
+WARNING: reduce/reduce conflict in state 87 resolved using rule (operations -> NUMBER)
+WARNING: rejected rule (datatype -> NUMBER) in state 87
+WARNING: reduce/reduce conflict in state 176 resolved using rule (mapFunctions -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON)
+WARNING: rejected rule (methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON) in state 176
+WARNING: Rule (methodsSet -> NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON) is never reduced

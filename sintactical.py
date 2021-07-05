@@ -152,8 +152,8 @@ def p_tuplas_expr(p): #Maria Rivera
         | tupla COMMA tuplas '''
 
 def p_tupla_expr(p): #Maria Rivera
-    ''' tupla : OPEN_BRACKET datatype CLOSE_BRACKET
-        | OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET'''
+    ''' tupla : OPEN_BRACKET datatype CLOSE_BRACKET SEMICOLON
+        | OPEN_BRACKET datatype COMMA datatype CLOSE_BRACKET SEMICOLON'''
 
 def p_mapFunctions_expr(p): #Maria Rivera
     '''mapFunctions : NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
@@ -161,9 +161,9 @@ def p_mapFunctions_expr(p): #Maria Rivera
         | NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON'''
 
 def p_arrayFn_expr(p):
-    '''arrayFn : NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS
-    | NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS
-    | NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS'''
+    '''arrayFn : NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    | NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    | NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
 
 """ def p_argUnico_expr(p):
     '''argUnico : NUMBER
