@@ -59,7 +59,7 @@ def p_controlArg_expr(p):
     '''controlArg : element clause element'''
 
 def p_for_expr(p):  #Bryan Vargas
-    'for : FOR OPEN_PARENTHESIS inicialization SEMICOLON controlArg SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '
+    'for : FOR OPEN_PARENTHESIS inicialization SEMICOLON expBoolean SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '
 
 def p_inicialization(p):   #Bryan Vargas
     '''inicialization : type NAME IGUAL NUMBER
@@ -73,7 +73,9 @@ def p_operations(p): #Carlos Moncayo y Maria Rivera
     | NAME operand NUMBER operations
     | NUMBER operand NAME 
     | NAME operand NUMBER 
-    | NAME operand NAME operations'''
+    | NAME operand NAME operations
+    | OPEN_PARENTHESIS NAME operand NAME CLOSE_PARENTHESIS operand operations
+    | OPEN_PARENTHESIS NUMBER operand NUMBER CLOSE_PARENTHESIS operand operations'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
     '''datatype : NUMBER
@@ -154,11 +156,6 @@ def p_arrayFn_expr(p):
     | NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS
     | NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS'''
 
-""" def p_argUnico_expr(p):
-    '''argUnico : NUMBER
-    | STRING
-    | NAME''' """
-
 def p_set_expr(p):  #Bryan Vargas
     '''set : type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
     | type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
@@ -192,11 +189,15 @@ def p_element_expr(p):  #Bryan Vargas
 def p_declaration_expr(p):  #Bryan Vargas
     'declaration : NAME IGUAL element SEMICOLON'
 
-#Análisis semántico-----------------------------------------------------------
+def p_logicalOperator_exp(p):   #Bryan Vargas
+    '''logicalOperator : AND
+    | OR'''
 
-def p_expressionbool_expr(p):   #Bryan Vargas
-
-
+def p_expBoolean_expr(p):   #Bryan Vargas
+    '''expBoolean : controlArg
+    | bool
+    | NOT expBoolean
+    | expBoolean logicalOperator expBoolean'''
 
 # Error rule for syntax errors
 def p_error(p):
@@ -207,14 +208,14 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-def sintaxAnalisys(sentence):
+'''def sintaxAnalisys(sentence):
     global flag
     flag =0
     result = parser.parse(sentence)
     if flag==0:
         return "No syntax error found!"
     else:
-        return "Syntax error in input!"
+        return "Syntax error in input!"'''
 
 
 while True:
