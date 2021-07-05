@@ -73,7 +73,8 @@ def p_operations(p): #Carlos Moncayo y Maria Rivera
     | NAME operand NUMBER operations
     | NUMBER operand NAME 
     | NAME operand NUMBER 
-    | NAME operand NAME operations'''
+    | NAME operand NAME operations
+    | NUMBER operand NUMBER operand operations'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
     '''datatype : NUMBER
