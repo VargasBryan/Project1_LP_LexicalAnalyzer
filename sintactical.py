@@ -55,14 +55,6 @@ def p_elseIf_expr(p): #Maria Rivera
 def p_else_expr(p): #Maria Rivera
     ' else : ELSE OPEN_BRACE expression CLOSE_BRACE'
 
-"""def p_comparacion_expr(p):
-    '''comparacion : IGUALIGUAL
-    | DIFERENTE
-    | MAYORQUE
-    | MAYORIGUALQUE
-    | MENORQUE
-    | MENORIGUALQUE'''"""
-
 def p_controlArg_expr(p):
     '''controlArg : element clause element'''
 
@@ -72,9 +64,6 @@ def p_for_expr(p):  #Bryan Vargas
 def p_inicialization(p):   #Bryan Vargas
     '''inicialization : type NAME IGUAL NUMBER
     | NAME IGUAL NUMBER'''
-
-"""def p_condition(p):    #Bryan Vargas
-    'condition : NAME clause value '"""
 
 def p_operations(p): #Carlos Moncayo y Maria Rivera
     '''operations : NUMBER operand NUMBER
@@ -201,7 +190,13 @@ def p_element_expr(p):  #Bryan Vargas
     | NAME'''
 
 def p_declaration_expr(p):  #Bryan Vargas
-    'declaration : NAME IGUAL element'
+    'declaration : NAME IGUAL element SEMICOLON'
+
+#Análisis semántico-----------------------------------------------------------
+
+def p_expressionbool_expr(p):   #Bryan Vargas
+
+
 
 # Error rule for syntax errors
 def p_error(p):
@@ -212,9 +207,19 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-def sintaxAnalisys(sentence):
+"""def sintaxAnalisys(sentence):
     result = parser.parse(sentence)
     if flag==0:
         print("No syntax error found!")
 
-sintaxAnalisys("let x = (100 + 50) * a;")
+sintaxAnalisys("let x = (100 + 50) * a;")"""
+
+while True:
+    try:
+        s = input('calc > ')
+    except EOFError:
+        break
+    if not s:
+        continue
+    result = parser.parse(s)
+    print(result)
