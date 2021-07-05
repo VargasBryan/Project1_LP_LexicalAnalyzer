@@ -6,7 +6,7 @@ import main
 import ply.yacc as yacc
 import sintactical as sinc
 
-root = tk.Tk()
+root = tk.Tk()         #Carlos Moncayo
 root.title("Analizador Semántico")
 root.config(width=1000, height=600)
 
@@ -30,7 +30,7 @@ lexerOutput = ScrolledText(root)
 lexerOutput.place(x=50, y=150,width=300,height=300)
 
 
-def numOpAction():
+def numOpAction():                        #Carlos Moncayo
     lexicTokens=[]
     data =str(input.get())
     main.lexer.input(data)
@@ -88,7 +88,7 @@ def numOpAction():
     output.config(state="disabled")
 
 #Maria
-def arrayOpAction():
+def arrayOpAction():   
     lexicTokens = []
     data = str(input.get())
     main.lexer.input(data)
@@ -141,7 +141,7 @@ def arrayOpAction():
             output.insert(tk.END, "Orden semántico incorrecto, así no se escribe una función\n")
 
 
-
+#Carlos Moncayo
 boton=tk.Button(root,text="Analizar operacion matemática",command=numOpAction)
 boton.place(x=280,y=50)
 

@@ -73,9 +73,7 @@ def p_operations(p): #Carlos Moncayo y Maria Rivera
     | NAME operand NUMBER operations
     | NUMBER operand NAME 
     | NAME operand NUMBER 
-    | NAME operand NAME operations
-    | OPEN_PARENTHESIS NAME operand NAME CLOSE_PARENTHESIS operand operations
-    | OPEN_PARENTHESIS NUMBER operand NUMBER CLOSE_PARENTHESIS operand operations'''
+    | NAME operand NAME operations'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
     '''datatype : NUMBER
@@ -208,22 +206,11 @@ def p_error(p):
 # Build the parser
 parser = yacc.yacc()
 
-'''def sintaxAnalisys(sentence):
+def sintaxAnalisys(sentence):
     global flag
     flag =0
     result = parser.parse(sentence)
     if flag==0:
         return "No syntax error found!"
     else:
-        return "Syntax error in input!"'''
-
-
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s:
-        continue
-    result = parser.parse(s)
-    print(result)
+        return "Syntax error in input!"
