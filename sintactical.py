@@ -82,9 +82,9 @@ def p_operations(p): #Carlos Moncayo y Maria Rivera
     | NUMBER
     | NUMBER operand NAME operations
     | NAME operand NUMBER operations
-    | NAME operand NAME operations
-    | OPEN_PARENTHESIS NAME operand NAME CLOSE_PARENTHESIS operand operations
-    | OPEN_PARENTHESIS NUMBER operand NUMBER CLOSE_PARENTHESIS operand operations'''
+    | NUMBER operand NAME 
+    | NAME operand NUMBER 
+    | NAME operand NAME operations'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
     '''datatype : NUMBER
@@ -213,8 +213,11 @@ def p_error(p):
 parser = yacc.yacc()
 
 def sintaxAnalisys(sentence):
+    global flag
+    flag =0
     result = parser.parse(sentence)
     if flag==0:
-        print("No syntax error found!")
+        return "No syntax error found!"
+    else:
+        return "Syntax error in input!"
 
-sintaxAnalisys("let x = (100 + 50) * a;")
