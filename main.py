@@ -1,44 +1,48 @@
 import ply.lex as lex
 
 reserved = {  # Carlos Moncayo
-    'if': 'IF',
-    'else if': 'ELSEIF',
-    'then': 'THEN',
+    #Words
     'boolean': 'BOOLEAN',
-    'break': 'BREAK',
-    'case': 'CASE',
     'char': 'CHAR',
-    'class': 'CLASS',
-    'default': 'DEFAULT',
+    'const': 'CONST',
     'else': 'ELSE',
+    'else if': 'ELSEIF',
     'false': 'FALSE',
+    'float': 'FLOAT',
     'for': 'FOR',
     'function': 'FUNCTION',
     'let': 'LET',
-    'true': 'TRUE',
-    'new': 'NEW',
-    'static': 'STATIC',
-    'const': 'CONST',
-    'switch': 'SWITCH',
-    'typeof': 'TYPEOF',
-    'while': 'WHILE',
-    'null': 'NULL',
-    'var': 'VAR',
-    'float': 'FLOAT',
-    'return': 'RETURN',
+    'if': 'IF',
     'int': 'INT',
+    'new': 'NEW',
+    'null': 'NULL',
+    'return': 'RETURN',
+    'true': 'TRUE',
+    'var': 'VAR',
+    'while': 'WHILE',
+    #Objects
     'Array': 'ARRAY',
-    'String': 'STRING',
-    'toString': 'TOSTRING',
-    'undefined': 'UNDEFINED',
-    'length': 'LENGTH',
-    'Set': 'SET',
     'Map': 'MAP',
-    'add' : 'ADD',
-    'delete' : 'DELETE',
-    'clear' : 'CLEAR',
-    'get' : 'GET',
-    'has' : 'HAS',
+    'Set': 'SET',
+    'String': 'STRING',
+    'undefined': 'UNDEFINED',
+    #Methods
+    'add': 'ADD',
+    'clear': 'CLEAR',
+    'delete': 'DELETE',
+    'get': 'GET',
+    'has': 'HAS',
+    #Deleted
+#    'break': 'BREAK',
+#    'case': 'CASE',
+#    'then': 'THEN',
+#    'class': 'CLASS',
+#    'default': 'DEFAULT',
+#    'static': 'STATIC',
+#    'switch': 'SWITCH',
+#    'typeof': 'TYPEOF',
+#    'toString': 'TOSTRING',
+#    'length': 'LENGTH',
 }
 
 # List of token names.   #Bryan Vargas
@@ -83,7 +87,8 @@ tokens = (
     'NOT',
     'OR',
     'LONGCOMMENT',
-    'NAME'
+    'NAME',
+    'PRINT'
 ) + tuple(reserved.values())
 
 # Maria Rivera
@@ -242,6 +247,9 @@ def t_NOT(t):
 
 # A regular expression rule with some action code
 
+def t_PRINT(t):
+    r'console\.log'
+    return t
 
 def t_NUMBER(t):
     r'\d+'
@@ -279,5 +287,18 @@ lexer = lex.lex()
 
 # To use the lexer, you first need to feed it some input text using its input() method. After that, repeated calls to token() produce tokens. The following code shows how this works:
 
-
 # Test it out
+
+data = '''
+console.log("hola");
+'''
+
+# Give the lexer some input
+lexer.input(data)
+
+# Tokenize
+while True:
+    tok = lexer.token()
+    if not tok:
+        break  # No more input
+    print(tok)

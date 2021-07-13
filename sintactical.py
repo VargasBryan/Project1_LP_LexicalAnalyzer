@@ -18,7 +18,9 @@ def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     | methodsSet
     | mapFunctions
     | arrayFn
-    | declaration '''
+    | declaration
+    | return
+    | function'''
 
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
     '''variable : type NAME IGUAL datatype SEMICOLON
@@ -188,7 +190,7 @@ def p_element_expr(p):  #Bryan Vargas
 def p_declaration_expr(p):  #Bryan Vargas
     'declaration : NAME IGUAL element SEMICOLON'
 
-def p_logicalOperator_exp(p):   #Bryan Vargas
+def p_logicalOperator_expr(p):   #Bryan Vargas
     '''logicalOperator : AND
     | OR'''
 
@@ -197,6 +199,19 @@ def p_expBoolean_expr(p):   #Bryan Vargas
     | bool
     | NOT expBoolean
     | expBoolean logicalOperator expBoolean'''
+
+def p_function_expr(p):
+    '''function : FUNCTION NAME OPEN_PARENTHESIS CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+    | FUNCTION NAME OPEN_PARENTHESIS parameter CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '''
+
+def p_parameter_expr(p):
+    '''parameter : element
+    | element parameter
+    '''
+
+def p_return_expr(p):
+    'return : RETURN element SEMICOLON'
+
 
 # Error rule for syntax errors
 def p_error(p):
@@ -215,3 +230,32 @@ def sintaxAnalisys(sentence):
         return "No syntax error found!"
     else:
         return "Syntax error in input!"
+
+'''
+#Probar Sintactico
+# Error rule for syntax errors
+def p_error(p):
+    if p:
+        print("Syntax error at token", p.type)
+        # Just discard the token and tell the parser it's okay.
+    else:
+        print("Syntax error at EOF")
+
+"""
+More information on these methods is as follows:
+parser.errok(). This resets the parser state so it doesn't think it's in error-recovery mode. This will prevent an error token from being generated and will reset the internal error counters so that the next syntax error will call p_error() again.
+parser.token(). This returns the next token on the input stream.
+parser.restart(). This discards the entire parsing stack and resets the parser to its initial state.
+"""
+
+# Build the parser
+parser = yacc.yacc()
+while True:
+    try:
+        s = input('calc > ')
+    except EOFError:
+        break
+    if not s: continue
+    result = parser.parse(s)
+    print(result)
+    '''
