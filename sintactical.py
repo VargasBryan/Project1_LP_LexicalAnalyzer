@@ -9,28 +9,31 @@ global flag
 flag=0
 
 def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
-    '''expression : variable
-    | variable expression
+    '''expression : semiExpression
+    | semiExpression expression'''
+
+def p_semiExpression_exp(p):
+    '''semiExpression : variable
     | dataStruct
-    | dataStruct expression
     | controlStruct
-    | controlStruct expression
     | methodsSet
     | mapFunctions
     | arrayFn
     | declaration
     | print
     | return
-    | function'''
+    | function
+    | COMMENTS
+    | asigOp'''
 
 def p_number_expr(p):
     '''number : INTEGER
     | FLOAT
-    | RESTA INTEGER
-    | RESTA FLOAT'''
+    | OPEN_PARENTHESIS RESTA INTEGER CLOSE_PARENTHESIS
+    | OPEN_PARENTHESIS RESTA FLOAT CLOSE_PARENTHESIS'''
+
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
     '''variable : type NAME IGUAL datatype SEMICOLON
-        | type NAME IGUAL operations SEMICOLON
         | NAME IGUAL datatype SEMICOLON'''
 
 def p_controlStruct_expr(p): #Carlos Moncayo y Maria Rivera
@@ -82,19 +85,33 @@ def p_operations(p): #Carlos Moncayo y Maria Rivera
     | number operand NAME
     | NAME operand number
     | NAME operand NAME operations
-    | number operand number operand operations'''
+    | number operand number operand operations
+    | NAME SUMA SUMA
+    | NAME RESTA RESTA'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
     '''datatype : number
     | STRING
     | CHAR
-    | operations'''
+    | operations
+    | dataStruct'''
 
 def p_operand_expr(p):    #Carlos Moncayo
     '''operand : SUMA 
     | RESTA 
     | MULTIPLICACION 
     | DIVISION'''
+
+def p_operadorAsig_expr(p):
+    '''operadorAsig : MASIGUAL
+    | MENOSIGUAL
+    | PORIGUAL
+    | DIVIGUAL
+    | MODIGUAL
+    | POTIGUAL'''
+
+def p_asigOp_expr(p):
+    'asigOp : NAME operadorAsig number SEMICOLON'
 
 def p_bool_expr(p):   #Carlos Moncayo
     '''bool : TRUE
@@ -113,13 +130,14 @@ def p_clause_expr(p):   #Bryan Vargas
     | MENORQUE
     | MENORIGUALQUE '''
 
+"""
 def p_value_expr(p):    #Bryan Vargas
     '''value : NAME
     | number'''
-
+"""
 def p_array_expr(p):    #Carlos Moncayo
-    '''array : type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
-    | type NAME IGUAL NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON'''
+    '''array : OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
+    | NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON'''
 
 def p_map_expr(p):   #Maria Rivera
     '''map : iniciarMap
@@ -127,24 +145,24 @@ def p_map_expr(p):   #Maria Rivera
         | generarMap '''
 
 def p_iniciarMap_expr(p): #Maria Rivera
-    'iniciarMap : variable IGUAL NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'
+    'iniciarMap : NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'
 
 def p_escribirMap_expr(p): #Maria Rivera
-    'escribirMap : variable IGUAL OPEN_BRACE claveValor CLOSE_BRACE'
+    'escribirMap : OPEN_BRACE claveValor CLOSE_BRACE'
 
 def p_claveValor_expr(p): #Maria Rivera
-    '''claveValor : clave COLON valor
-    | clave COLON valor COMMA claveValor'''
+    '''claveValor : clave COLON datatype
+    | clave COLON datatype COMMA claveValor'''
 
 def p_clave_expr(p): #Maria Rivera
     'clave : datatype'
-
+"""
 def p_valor_expr(p): #Maria Rivera
     '''valor : datatype
         | dataStruct'''
-
+"""
 def p_generarMap_expr(p): #Maria Rivera
-     'generarMap : variable IGUAL OPEN_BRACE tuplas CLOSE_BRACE'
+     'generarMap : OPEN_BRACE tuplas CLOSE_BRACE'
 
 def p_tuplas_expr(p): #Maria Rivera
     '''tuplas : tupla
@@ -165,29 +183,31 @@ def p_arrayFn_expr(p):
     | NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
 
 def p_set_expr(p):  #Bryan Vargas
-    '''set : type NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
-    | type NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
-    | type NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
-    | NAME IGUAL NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
-    | NAME IGUAL NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
-    | NAME IGUAL NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
+    '''set : NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    | NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
+    | NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
 
 def p_methodsSet_expr(p):  #Bryan Vargas
     '''methodsSet : NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
     | NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
     | NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON '''
 
+
 def p_items_expr(p):  #Carlos Moncayo y Maria Rivera
-    '''items : number
-    | cadena'''
-"""
-def p_number_expr(p):   #Carlos Moncayo y Maria Rivera
-    '''number : number
-    | number COMMA number'''
-"""
+    '''items : item
+    | item COMMA items'''
+
+def p_item_expr(p): #Bryan Vargas
+    '''item : number
+    | STRING
+    | expBoolean
+    | NAME
+    | datatype'''
+
 def p_cadena_expr(p):   #Carlos Moncayo y Maria Rivera
     '''cadena : STRING 
     | STRING COMMA cadena'''
+
 
 def p_element_expr(p):  #Bryan Vargas
     '''element : STRING
@@ -225,22 +245,6 @@ def p_print_expr(p):
 # Build the parser
 parser = yacc.yacc()
  
-
-
-
-#Probar Sintactico
-# Error rule for syntax errors
-def p_error(p):
-    if p:
-        print("Syntax error at token", p.type)
-        errors.append("Syntax error at token "+ str(p.type))
-        # Just discard the token and tell the parser it's okay.
-    else:
-        print("Syntax error at EOF")
-        errors.append("Syntax error at EOF")
-
-# Build the parser
-parser = yacc.yacc()
 
 def sintaxAnalisys(sentence):
     result = parser.parse(sentence)
