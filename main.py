@@ -13,7 +13,7 @@ import ply.lex as lex
 """
 reserved = {  # Carlos Moncayo
     #Words
-    'boolean': 'BOOLEAN',
+#    'boolean': 'BOOLEAN',
     'char': 'CHAR',
     'const': 'CONST',
     'else': 'ELSE',
@@ -64,7 +64,7 @@ tokens = (
     'LINE_BREAK',
     'SINGLE_QUOTE',
     'DOUBLE_QUOTES',
-    'BACKSLASH',
+#   'BACKSLASH',
     'IGUAL',
     'MASIGUAL',
     'MENOSIGUAL',
@@ -114,7 +114,7 @@ t_CLOSE_BRACE = r'\}'
 t_LINE_BREAK = r'\n'
 t_SINGLE_QUOTE = r'\''
 t_DOUBLE_QUOTES = r'\"'
-t_BACKSLASH = r'\\'
+#t_BACKSLASH = r'\\'
 
 def t_IGUAL(t):
     r'='
