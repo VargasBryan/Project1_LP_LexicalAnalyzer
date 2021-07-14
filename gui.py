@@ -6,10 +6,12 @@ import main
 import ply.yacc as yacc
 import sintactical as sinc
 
+colorroot = "darkolivegreen"
+colorlabel = "white"
 root = tk.Tk()         #Carlos Moncayo
 root.title("Analizador Semántico")
 root.config(width=1000, height=600)
-
+root.config(bg=colorroot)
 output = ScrolledText(root)
 output.place(x=550, y=50,width=425,height=500)
 output.config(state="disabled")
@@ -17,14 +19,14 @@ output.config(state="disabled")
 input= ScrolledText(root)
 input.place(x=50, y=50,width=375,height=200)
 
-inputLabel=tk.Label(root,text="Entrada")
+inputLabel=tk.Label(root,text="Entrada",bg = colorroot, fg = colorlabel, font='Helvetica 16 bold')
 inputLabel.place(x=50,y=20)
 
-outputLabel=tk.Label(root,text="Análisis léxico")
+outputLabel=tk.Label(root,text="Análisis léxico",bg = colorroot, fg = colorlabel, font='Helvetica 16 bold')
 outputLabel.place(x=550,y=20)
 
 
-lexerLabel=tk.Label(root,text="Análisis sintáctico-semántico")
+lexerLabel=tk.Label(root,text="Análisis sintáctico-semántico",bg = colorroot, fg = colorlabel, font='Helvetica 16 bold')
 lexerLabel.place(x=50,y=270)
 
 lexerOutput = ScrolledText(root)
