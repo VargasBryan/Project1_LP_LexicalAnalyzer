@@ -1,7 +1,0 @@
-para probar la interfaz grafica escribir en la entrada:
-var op=5+4*4-6+9;
-y presionar el boton "Analizar operacion matematica" y saldra el analisis lexico sintactico y semantico de la operacion
-
-escribir en la entrada:
-let numeros=[1,2,3]; numeros.pop();
-y presionar el boton "Analizar funcion de estructura array" y saldra el analisis lexico sintactico y semantico de la operacion
