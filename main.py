@@ -116,9 +116,6 @@ t_SINGLE_QUOTE = r'\''
 t_DOUBLE_QUOTES = r'\"'
 #t_BACKSLASH = r'\\'
 
-def t_IGUAL(t):
-    r'='
-    return t
 
 
 def t_MASIGUAL(t):
@@ -162,19 +159,8 @@ def t_DIFERENTE(t):
     r'!='
     return t
 
-
-def t_MAYORQUE(t):
-    r'>'
-    return t
-
-
 def t_MAYORIGUALQUE(t):
     r'>='
-    return t
-
-
-def t_MENORQUE(t):
-    r'<'
     return t
 
 
@@ -213,9 +199,19 @@ def t_DIVISION(t):
     r'/'
     return t
 
+def t_IGUAL(t):
+    r'='
+    return t
+    
 # Operadores lógicos
 
+def t_MENORQUE(t):
+    r'<'
+    return t
 
+def t_MAYORQUE(t):
+    r'>'
+    return t
 def t_AND(t):
     r'&&'
     return t

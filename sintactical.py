@@ -243,9 +243,16 @@ def p_print_expr(p):
     'print : PRINT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'
 
 # Build the parser
-parser = yacc.yacc()
- 
+def p_error(p):
+    if p:
+        print("Syntax error at token", p.type)
+        errors.append("Syntax error at token "+ str(p.type))
+        # Just discard the token and tell the parser it's okay.
+    else:
+        print("Syntax error at EOF")
+        errors.append("Syntax error at EOF")
 
+parser = yacc.yacc()
 def sintaxAnalisys(sentence):
     result = parser.parse(sentence)
     return result
