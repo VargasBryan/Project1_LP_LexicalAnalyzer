@@ -5,9 +5,6 @@ import ply.yacc as yacc
 # Get the token map from the lexer.  This is required.
 from main import tokens
 
-global flag
-flag=0
-
 def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     '''expression : semiExpression
     | semiExpression expression'''
@@ -87,10 +84,12 @@ def p_operations(p): #Carlos Moncayo y Maria Rivera
     | NAME operand NAME operations
     | number operand number operand operations
     | NAME SUMA SUMA
+    | NAME operand NAME
     | NAME RESTA RESTA'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
     '''datatype : number
+    | NAME
     | STRING
     | CHAR
     | operations
@@ -130,14 +129,9 @@ def p_clause_expr(p):   #Bryan Vargas
     | MENORQUE
     | MENORIGUALQUE '''
 
-"""
-def p_value_expr(p):    #Bryan Vargas
-    '''value : NAME
-    | number'''
-"""
 def p_array_expr(p):    #Carlos Moncayo
-    '''array : OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
-    | NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS SEMICOLON'''
+    '''array : OPEN_BRACKET items CLOSE_BRACKET 
+    | NEW ARRAY OPEN_PARENTHESIS items CLOSE_PARENTHESIS '''
 
 def p_map_expr(p):   #Maria Rivera
     '''map : iniciarMap
@@ -145,7 +139,7 @@ def p_map_expr(p):   #Maria Rivera
         | generarMap '''
 
 def p_iniciarMap_expr(p): #Maria Rivera
-    'iniciarMap : NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'
+    'iniciarMap : NEW MAP OPEN_PARENTHESIS CLOSE_PARENTHESIS'
 
 def p_escribirMap_expr(p): #Maria Rivera
     'escribirMap : OPEN_BRACE claveValor CLOSE_BRACE'
@@ -156,11 +150,7 @@ def p_claveValor_expr(p): #Maria Rivera
 
 def p_clave_expr(p): #Maria Rivera
     'clave : datatype'
-"""
-def p_valor_expr(p): #Maria Rivera
-    '''valor : datatype
-        | dataStruct'''
-"""
+
 def p_generarMap_expr(p): #Maria Rivera
      'generarMap : OPEN_BRACE tuplas CLOSE_BRACE'
 
@@ -183,9 +173,9 @@ def p_arrayFn_expr(p):
     | NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
 
 def p_set_expr(p):  #Bryan Vargas
-    '''set : NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
-    | NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS SEMICOLON
-    | NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
+    '''set : NEW SET OPEN_PARENTHESIS CLOSE_PARENTHESIS 
+    | NEW SET OPEN_PARENTHESIS OPEN_BRACKET items CLOSE_BRACKET CLOSE_PARENTHESIS 
+    | NEW SET OPEN_PARENTHESIS element CLOSE_PARENTHESIS'''
 
 def p_methodsSet_expr(p):  #Bryan Vargas
     '''methodsSet : NAME POINT ADD OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
@@ -232,15 +222,16 @@ def p_function_expr(p):
     | FUNCTION NAME OPEN_PARENTHESIS parameter CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '''
 
 def p_parameter_expr(p):
-    '''parameter : element
-    | element parameter
+    '''parameter : datatype
+    | datatype COMMA parameter
     '''
 
 def p_return_expr(p):
-    'return : RETURN element SEMICOLON'
+    'return : RETURN datatype SEMICOLON'
 
 def p_print_expr(p):
-    'print : PRINT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'
+    '''print : PRINT OPEN_PARENTHESIS datatype CLOSE_PARENTHESIS SEMICOLON
+    | PRINT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'''
 
 # Build the parser
 def p_error(p):
