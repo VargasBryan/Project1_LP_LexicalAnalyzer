@@ -152,8 +152,8 @@ def p_soloIf_expr(p): #Maria Rivera
     ''' soloIf : IF OPEN_PARENTHESIS expBoolean CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE'''
 
 def p_elseIf_expr(p): #Maria Rivera
-    ''' elseIf : ELSEIF OPEN_PARENTHESIS expBoolean CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
-        | ELSEIF OPEN_PARENTHESIS expBoolean CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE elseIf'''
+    ''' elseIf : ELSE IF OPEN_PARENTHESIS expBoolean CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
+        | ELSE IF OPEN_PARENTHESIS expBoolean CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE elseIf'''
 
 def p_else_expr(p): #Maria Rivera
     ' else : ELSE OPEN_BRACE expression CLOSE_BRACE'
