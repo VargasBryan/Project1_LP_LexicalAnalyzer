@@ -80,7 +80,8 @@ tokens = (
     'OR',
     'LONGCOMMENT',
     'NAME',
-    'PRINT'
+    'PRINT',
+    'INPUT'
 ) + tuple(reserved.values()) #  + tuple(methods.values())
 
 # Maria Rivera
@@ -221,6 +222,10 @@ def t_PRINT(t):
     r'console\.log'
     return t
 
+def t_INPUT(t):
+    r'prompt'
+    return t
+
 def t_FLOAT(t):
     r'\d+ \. \d+'
     t.value = float(t.value)
@@ -230,8 +235,6 @@ def t_INTEGER(t):
     r'\d+'
     t.value = int(t.value)
     return t
-
-
 
 def t_NAME(t):  # Carlos Moncayo
     r'[a-zA-Z_\$]{1}[a-zA-Z0-9_\$]*'

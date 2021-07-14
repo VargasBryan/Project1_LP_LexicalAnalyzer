@@ -18,6 +18,7 @@ def p_semiExpression_exp(p): #Bryan Vargas
     | arrayFn
     | declaration
     | print
+    | input
     | return
     | function
     | COMMENTS
@@ -32,7 +33,9 @@ def p_number_expr(p): #Bryan Vargas
 
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
     '''variable : type NAME IGUAL datatype SEMICOLON
-        | NAME IGUAL datatype SEMICOLON'''
+        | NAME IGUAL datatype SEMICOLON
+        | type NAME IGUAL input
+        | NAME IGUAL input'''
 
 def p_controlStruct_expr(p): #Carlos Moncayo y Maria Rivera
     '''controlStruct : while
@@ -228,6 +231,11 @@ def p_print_expr(p): #Bryan Vargas
     '''print : PRINT OPEN_PARENTHESIS datatype CLOSE_PARENTHESIS SEMICOLON
     | PRINT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'''
 
+def p_input_expr(p): #Bryan Vargas
+    '''input : INPUT OPEN_PARENTHESIS element COMMA element CLOSE_PARENTHESIS SEMICOLON
+    | INPUT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
+    | INPUT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
+    '''
 # Build the parser
 def p_error(p):
     if p:
