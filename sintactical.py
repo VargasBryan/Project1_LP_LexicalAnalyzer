@@ -1,5 +1,5 @@
 # Yacc example
-
+errors=[]
 import ply.yacc as yacc
 
 # Get the token map from the lexer.  This is required.
@@ -222,50 +222,26 @@ def p_return_expr(p):
 def p_print_expr(p):
     'print : PRINT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'
 
-"""
-# Error rule for syntax errors
-def p_error(p):
-    global flag
-    flag=1
-    print("Syntax error in input!")
-
 # Build the parser
 parser = yacc.yacc()
+ 
 
-def sintaxAnalisys(sentence):
-    global flag
-    flag =0
-    result = parser.parse(sentence)
-    if flag==0:
-        return "No syntax error found!"
-    else:
-        return "Syntax error in input!"
 
-"""
 
 #Probar Sintactico
 # Error rule for syntax errors
 def p_error(p):
     if p:
         print("Syntax error at token", p.type)
+        errors.append("Syntax error at token "+ str(p.type))
         # Just discard the token and tell the parser it's okay.
     else:
         print("Syntax error at EOF")
-
-"""
-More information on these methods is as follows:
-parser.errok(). This resets the parser state so it doesn't think it's in error-recovery mode. This will prevent an error token from being generated and will reset the internal error counters so that the next syntax error will call p_error() again.
-parser.token(). This returns the next token on the input stream.
-parser.restart(). This discards the entire parsing stack and resets the parser to its initial state.
-"""
+        errors.append("Syntax error at EOF")
 
 # Build the parser
 parser = yacc.yacc()
-while True:
-    try:
-        s = input('calc > ')
-    except EOFError:
-        break
-    if not s: continue
-    result = parser.parse(s)
-    print(result)
+
+def sintaxAnalisys(sentence):
+    result = parser.parse(sentence)
+    return result

@@ -12,25 +12,26 @@ root.config(width=1000, height=600)
 
 output = ScrolledText(root)
 output.place(x=550, y=50,width=425,height=500)
+output.config(state="disabled")
 
-input=tk.Entry(root)
-input.place(x=50, y=50,width=225)
+input= ScrolledText(root)
+input.place(x=50, y=50,width=375,height=200)
 
 inputLabel=tk.Label(root,text="Entrada")
 inputLabel.place(x=50,y=20)
 
-outputLabel=tk.Label(root,text="Salida")
+outputLabel=tk.Label(root,text="Análisis léxico")
 outputLabel.place(x=550,y=20)
 
 
-lexerLabel=tk.Label(root,text="Análisis léxico y sintáctico")
-lexerLabel.place(x=50,y=120)
+lexerLabel=tk.Label(root,text="Análisis sintáctico-semántico")
+lexerLabel.place(x=50,y=270)
 
 lexerOutput = ScrolledText(root)
-lexerOutput.place(x=50, y=150,width=300,height=300)
+lexerOutput.place(x=50, y=300,width=375,height=250)
+lexerOutput.config(state="disabled")
 
-
-def numOpAction():                        #Carlos Moncayo
+""" def numOpAction():                        #Carlos Moncayo
     lexicTokens=[]
     data =str(input.get())
     main.lexer.input(data)
@@ -85,9 +86,10 @@ def numOpAction():                        #Carlos Moncayo
                         output.insert(tk.END,"Orden semántico incorrecto, se esparaba un operador matematico\n")
                         break
                 counter+=1
-    output.config(state="disabled")
+    output.config(state="disabled") """
 
 #Maria
+""" 
 def arrayOpAction():   
     lexicTokens = []
     data = str(input.get())
@@ -139,13 +141,37 @@ def arrayOpAction():
             output.insert(tk.END, "Orden semántico correcto \n")
         else:
             output.insert(tk.END, "Orden semántico incorrecto, así no se escribe una función\n")
+ """
+def analisis():
+    data = str(input.get(1.0,tk.END))
+    main.lexer.input(data)
+    lexerOutput.config(state="normal") #activa la caja
+    lexerOutput.delete('1.0', tk.END) #limpia la caja
+    output.config(state="normal")
+    output.delete('1.0', tk.END)
 
-
+    while True:
+        tok = main.lexer.token()
+        if not tok:
+            break  # No more input
+        output.insert(tk.END, str(tok)+"\n")
+        
+    syntax=sinc.sintaxAnalisys(data)
+    if len(sinc.errors)==0 and len(main.error)==0:
+        lexerOutput.insert(tk.END,"\n"+"No syntax error!")
+    else:
+        for k in main.error:
+            output.insert(tk.END, "\n"+k)
+            lexerOutput.insert(tk.END, "\n"+"Unknown expression error")
+        for i in sinc.errors:
+            lexerOutput.insert(tk.END, "\n"+i)
+    sinc.errors.clear()
+    main.error.clear()
+    lexerOutput.config(state="disabled")
+    output.config(state="disabled")
 #Carlos Moncayo
-boton=tk.Button(root,text="Analizar operacion matemática",command=numOpAction)
-boton.place(x=280,y=50)
+boton=tk.Button(root,text="Analizar",command=analisis)#,command=numOpAction
+boton.place(x=435,y=50)
 
-botonArray=tk.Button(root,text="Analizar función de estructura array",command=arrayOpAction)
-botonArray.place(x=280,y=100)
 
 root.mainloop()

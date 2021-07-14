@@ -1,5 +1,5 @@
 import ply.lex as lex
-
+error=[]
 """methods = {
     'add': 'ADD',
     'clear': 'CLEAR',
@@ -271,6 +271,7 @@ t_ignore = ' \t'
 
 def t_error(t):
     print("Illegal character '%s'" % t.value[0])
+    error.append("Illegal character "+str(t.value[0]))
     t.lexer.skip(1)
 
 
@@ -286,15 +287,16 @@ for(a:4);
 pop
 delete
 1
+@
 19.3
 '''
 
 # Give the lexer some input
 lexer.input(data)
 
-# Tokenize
+""" # Tokenize
 while True:
     tok = lexer.token()
     if not tok:
         break  # No more input
-    print(tok)
+    print(tok) """
