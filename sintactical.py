@@ -9,7 +9,7 @@ def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     '''expression : semiExpression
     | semiExpression expression'''
 
-def p_semiExpression_exp(p):
+def p_semiExpression_exp(p): #Bryan Vargas
     '''semiExpression : variable
     | dataStruct
     | controlStruct
@@ -21,9 +21,10 @@ def p_semiExpression_exp(p):
     | return
     | function
     | COMMENTS
+    | LONGCOMMENT
     | asigOp'''
 
-def p_number_expr(p):
+def p_number_expr(p): #Bryan Vargas
     '''number : INTEGER
     | FLOAT
     | OPEN_PARENTHESIS RESTA INTEGER CLOSE_PARENTHESIS
@@ -63,7 +64,7 @@ def p_elseIf_expr(p): #Maria Rivera
 def p_else_expr(p): #Maria Rivera
     ' else : ELSE OPEN_BRACE expression CLOSE_BRACE'
 
-def p_controlArg_expr(p):
+def p_controlArg_expr(p): #Maria Rivera
     '''controlArg : element clause element'''
 
 def p_for_expr(p):  #Bryan Vargas
@@ -101,7 +102,7 @@ def p_operand_expr(p):    #Carlos Moncayo
     | MULTIPLICACION 
     | DIVISION'''
 
-def p_operadorAsig_expr(p):
+def p_operadorAsig_expr(p): #Bryan Vargas
     '''operadorAsig : MASIGUAL
     | MENOSIGUAL
     | PORIGUAL
@@ -109,7 +110,7 @@ def p_operadorAsig_expr(p):
     | MODIGUAL
     | POTIGUAL'''
 
-def p_asigOp_expr(p):
+def p_asigOp_expr(p): #Bryan Vargas
     'asigOp : NAME operadorAsig number SEMICOLON'
 
 def p_bool_expr(p):   #Carlos Moncayo
@@ -167,7 +168,7 @@ def p_mapFunctions_expr(p): #Maria Rivera
         | NAME POINT GET OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON
         | NAME POINT HAS OPEN_PARENTHESIS clave CLOSE_PARENTHESIS SEMICOLON'''
 
-def p_arrayFn_expr(p):
+def p_arrayFn_expr(p): #Maria Rivera
     '''arrayFn : NAME POINT POP OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON
     | NAME POINT PUSH OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
     | NAME POINT UNSHIFT OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON'''
@@ -182,7 +183,6 @@ def p_methodsSet_expr(p):  #Bryan Vargas
     | NAME POINT DELETE OPEN_PARENTHESIS element CLOSE_PARENTHESIS SEMICOLON
     | NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON '''
 
-
 def p_items_expr(p):  #Carlos Moncayo y Maria Rivera
     '''items : item
     | item COMMA items'''
@@ -193,11 +193,6 @@ def p_item_expr(p): #Bryan Vargas
     | expBoolean
     | NAME
     | datatype'''
-
-def p_cadena_expr(p):   #Carlos Moncayo y Maria Rivera
-    '''cadena : STRING 
-    | STRING COMMA cadena'''
-
 
 def p_element_expr(p):  #Bryan Vargas
     '''element : STRING
@@ -217,19 +212,19 @@ def p_expBoolean_expr(p):   #Bryan Vargas
     | NOT expBoolean
     | expBoolean logicalOperator expBoolean'''
 
-def p_function_expr(p):
+def p_function_expr(p): #Bryan Vargas
     '''function : FUNCTION NAME OPEN_PARENTHESIS CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE
     | FUNCTION NAME OPEN_PARENTHESIS parameter CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '''
 
-def p_parameter_expr(p):
+def p_parameter_expr(p): #Bryan Vargas
     '''parameter : datatype
     | datatype COMMA parameter
     '''
 
-def p_return_expr(p):
+def p_return_expr(p): #Bryan Vargas
     'return : RETURN datatype SEMICOLON'
 
-def p_print_expr(p):
+def p_print_expr(p): #Bryan Vargas
     '''print : PRINT OPEN_PARENTHESIS datatype CLOSE_PARENTHESIS SEMICOLON
     | PRINT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'''
 

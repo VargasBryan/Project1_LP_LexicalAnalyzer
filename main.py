@@ -13,7 +13,6 @@ error=[]
 """
 reserved = {  # Carlos Moncayo
     #Words
-#    'boolean': 'BOOLEAN',
     'char': 'CHAR',
     'const': 'CONST',
     'else': 'ELSE',
@@ -23,9 +22,7 @@ reserved = {  # Carlos Moncayo
     'function': 'FUNCTION',
     'let': 'LET',
     'if': 'IF',
-    'int': 'INT',
     'new': 'NEW',
-    'null': 'NULL',
     'return': 'RETURN',
     'true': 'TRUE',
     'var': 'VAR',
@@ -35,9 +32,9 @@ reserved = {  # Carlos Moncayo
     'Map': 'MAP',
     'Set': 'SET',
     'String': 'STRING',
+    #Methods
     'add': 'ADD',
     'clear': 'CLEAR',
-    #Methods
     'delete': 'DELETE',
     'get': 'GET',
     'has': 'HAS',
@@ -61,10 +58,6 @@ tokens = (
     'CLOSE_BRACKET',
     'OPEN_BRACE',
     'CLOSE_BRACE',
-    'LINE_BREAK',
-    'SINGLE_QUOTE',
-    'DOUBLE_QUOTES',
-#   'BACKSLASH',
     'IGUAL',
     'MASIGUAL',
     'MENOSIGUAL',
@@ -111,12 +104,6 @@ t_OPEN_BRACKET = r'\['
 t_CLOSE_BRACKET = r'\]'
 t_OPEN_BRACE = r'\{'
 t_CLOSE_BRACE = r'\}'
-t_LINE_BREAK = r'\n'
-t_SINGLE_QUOTE = r'\''
-t_DOUBLE_QUOTES = r'\"'
-#t_BACKSLASH = r'\\'
-
-
 
 def t_MASIGUAL(t):
     r'\+='
@@ -144,7 +131,7 @@ def t_MODIGUAL(t):
 
 
 def t_POTIGUAL(t):
-    r'%='
+    r'\*\*='
     return t
 
 # Operadores de comparación
