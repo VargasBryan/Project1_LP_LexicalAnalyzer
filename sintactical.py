@@ -19,9 +19,15 @@ def p_expression_expr(p):  #Carlos Moncayo y Maria Rivera
     | mapFunctions
     | arrayFn
     | declaration
+    | print
     | return
     | function'''
 
+def p_number_expr(p):
+    '''number : INTEGER
+    | FLOAT
+    | RESTA INTEGER
+    | RESTA FLOAT'''
 def p_variable_expr(p): #Carlos Moncayo y Maria Rivera
     '''variable : type NAME IGUAL datatype SEMICOLON
         | type NAME IGUAL operations SEMICOLON
@@ -64,24 +70,25 @@ def p_for_expr(p):  #Bryan Vargas
     'for : FOR OPEN_PARENTHESIS inicialization SEMICOLON expBoolean SEMICOLON operations CLOSE_PARENTHESIS OPEN_BRACE expression CLOSE_BRACE '
 
 def p_inicialization(p):   #Bryan Vargas
-    '''inicialization : type NAME IGUAL NUMBER
-    | NAME IGUAL NUMBER'''
+    '''inicialization : type NAME IGUAL number
+    | NAME IGUAL number'''
 
 def p_operations(p): #Carlos Moncayo y Maria Rivera
-    '''operations : NUMBER operand NUMBER
+    '''operations : number operand number
     | NAME
-    | NUMBER
-    | NUMBER operand NAME operations
-    | NAME operand NUMBER operations
-    | NUMBER operand NAME 
-    | NAME operand NUMBER 
+    | number
+    | number operand NAME operations
+    | NAME operand number operations
+    | number operand NAME
+    | NAME operand number
     | NAME operand NAME operations
-    | NUMBER operand NUMBER operand operations'''
+    | number operand number operand operations'''
 
 def p_datatype_expr(p):  #Carlos Moncayo y Maria Rivera
-    '''datatype : NUMBER
+    '''datatype : number
     | STRING
-    | CHAR'''
+    | CHAR
+    | operations'''
 
 def p_operand_expr(p):    #Carlos Moncayo
     '''operand : SUMA 
@@ -108,7 +115,7 @@ def p_clause_expr(p):   #Bryan Vargas
 
 def p_value_expr(p):    #Bryan Vargas
     '''value : NAME
-    | NUMBER'''
+    | number'''
 
 def p_array_expr(p):    #Carlos Moncayo
     '''array : type NAME IGUAL OPEN_BRACKET items CLOSE_BRACKET SEMICOLON
@@ -171,20 +178,20 @@ def p_methodsSet_expr(p):  #Bryan Vargas
     | NAME POINT CLEAR OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON '''
 
 def p_items_expr(p):  #Carlos Moncayo y Maria Rivera
-    '''items : numeros
+    '''items : number
     | cadena'''
-
-def p_numeros_expr(p):   #Carlos Moncayo y Maria Rivera
-    '''numeros : NUMBER
-    | NUMBER COMMA numeros'''
-
+"""
+def p_number_expr(p):   #Carlos Moncayo y Maria Rivera
+    '''number : number
+    | number COMMA number'''
+"""
 def p_cadena_expr(p):   #Carlos Moncayo y Maria Rivera
     '''cadena : STRING 
     | STRING COMMA cadena'''
 
 def p_element_expr(p):  #Bryan Vargas
     '''element : STRING
-    | NUMBER
+    | number
     | NAME'''
 
 def p_declaration_expr(p):  #Bryan Vargas
@@ -212,7 +219,10 @@ def p_parameter_expr(p):
 def p_return_expr(p):
     'return : RETURN element SEMICOLON'
 
+def p_print_expr(p):
+    'print : PRINT OPEN_PARENTHESIS CLOSE_PARENTHESIS SEMICOLON'
 
+"""
 # Error rule for syntax errors
 def p_error(p):
     global flag
@@ -231,7 +241,8 @@ def sintaxAnalisys(sentence):
     else:
         return "Syntax error in input!"
 
-'''
+"""
+
 #Probar Sintactico
 # Error rule for syntax errors
 def p_error(p):
@@ -258,4 +269,3 @@ while True:
     if not s: continue
     result = parser.parse(s)
     print(result)
-    '''

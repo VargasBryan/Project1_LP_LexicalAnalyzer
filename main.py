@@ -1,5 +1,16 @@
 import ply.lex as lex
 
+"""methods = {
+    'add': 'ADD',
+    'clear': 'CLEAR',
+    'delete': 'DELETE',
+    'get': 'GET',
+    'has': 'HAS',
+    'pop': 'POP',
+    'push': 'PUSH',
+    'unshift': 'UNSHIFT'
+}
+"""
 reserved = {  # Carlos Moncayo
     #Words
     'boolean': 'BOOLEAN',
@@ -8,7 +19,6 @@ reserved = {  # Carlos Moncayo
     'else': 'ELSE',
     'else if': 'ELSEIF',
     'false': 'FALSE',
-    'float': 'FLOAT',
     'for': 'FOR',
     'function': 'FUNCTION',
     'let': 'LET',
@@ -25,30 +35,22 @@ reserved = {  # Carlos Moncayo
     'Map': 'MAP',
     'Set': 'SET',
     'String': 'STRING',
-    'undefined': 'UNDEFINED',
-    #Methods
     'add': 'ADD',
     'clear': 'CLEAR',
+    #Methods
     'delete': 'DELETE',
     'get': 'GET',
     'has': 'HAS',
-    #Deleted
-#    'break': 'BREAK',
-#    'case': 'CASE',
-#    'then': 'THEN',
-#    'class': 'CLASS',
-#    'default': 'DEFAULT',
-#    'static': 'STATIC',
-#    'switch': 'SWITCH',
-#    'typeof': 'TYPEOF',
-#    'toString': 'TOSTRING',
-#    'length': 'LENGTH',
+    'pop': 'POP',
+    'push': 'PUSH',
+    'unshift': 'UNSHIFT'
 }
 
 # List of token names.   #Bryan Vargas
 tokens = (
     'COMMENTS',
-    'NUMBER',
+    'INTEGER',
+    'FLOAT',
     'POINT',
     'COLON',
     'COMMA',
@@ -64,9 +66,6 @@ tokens = (
     'DOUBLE_QUOTES',
     'BACKSLASH',
     'IGUAL',
-    'POP',
-    'UNSHIFT',
-    'PUSH',
     'MASIGUAL',
     'MENOSIGUAL',
     'PORIGUAL',
@@ -89,7 +88,7 @@ tokens = (
     'LONGCOMMENT',
     'NAME',
     'PRINT'
-) + tuple(reserved.values())
+) + tuple(reserved.values()) #  + tuple(methods.values())
 
 # Maria Rivera
 
@@ -99,18 +98,6 @@ def t_STRING(t):
 
 def t_CHAR(t):
     r'\".\"'
-    return t
-
-def t_POP(t):
-    r'pop'
-    return t
-
-def t_PUSH(t):
-    r'push'
-    return t
-
-def t_UNSHIFT(t):
-    r'unshift'
     return t
 
 # Asignaciones
@@ -251,7 +238,12 @@ def t_PRINT(t):
     r'console\.log'
     return t
 
-def t_NUMBER(t):
+def t_FLOAT(t):
+    r'\d+ \. \d+'
+    t.value = float(t.value)
+    return t
+
+def t_INTEGER(t):
     r'\d+'
     t.value = int(t.value)
     return t
@@ -290,7 +282,11 @@ lexer = lex.lex()
 # Test it out
 
 data = '''
-console.log("hola");
+for(a:4);
+pop
+delete
+1
+19.3
 '''
 
 # Give the lexer some input
